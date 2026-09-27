@@ -141,7 +141,7 @@ function Footer() {
               <a
                 href="#"
                 aria-label="Instagram"
-                className="flex h-9 w-9 items-center justify-center border text-white/70 rounded-full hover:bg-linear-to-tr from-yellow-400 via-pink-500 to-purple-600 hover:text-white transition-transform duration-200 hover:scale-105 sm:h-10 sm:w-10"
+                className="flex h-9 w-9 items-center justify-center border text-white/70 rounded-full hover:bg-linear-to-tr hover:border-0 from-yellow-400/80 via-pink-500/80 to-purple-600/80 hover:text-white/80 transition-transform duration-200 hover:scale-105 sm:h-10 sm:w-10"
               >
                 <FaInstagram size={16} strokeWidth={2.2} aria-hidden="true" />
               </a>
@@ -149,7 +149,7 @@ function Footer() {
               <a
                 href="#"
                 aria-label="Facebook"
-                className="flex h-9 w-9 items-center justify-center rounded-full border text-white/70 hover:text-white transition-transform duration-200 hover:bg-blue-600 hover:scale-105 sm:h-10 sm:w-10"
+                className="flex h-9 w-9 items-center justify-center rounded-full border text-white/70 hover:text-white/80 transition-transform duration-200 hover:border-0 hover:bg-blue-600/80 hover:scale-105 sm:h-10 sm:w-10"
               >
                 <FaFacebookF size={16} strokeWidth={2.2} aria-hidden="true" />
               </a>
@@ -157,7 +157,7 @@ function Footer() {
               <a
                 href="mailto:info@sakshiplayschool.com"
                 aria-label="Email"
-                className="flex h-9 w-9 items-center justify-center rounded-full hover:bg-blue-100 hover:text-brand-navy  border text-white/70 transition-transform duration-200 hover:scale-105 sm:h-10 sm:w-10"
+                className="flex h-9 w-9 items-center justify-center rounded-full hover:bg-blue-100/80 hover:text-brand-navy  border text-white/70 transition-transform duration-200 hover:scale-105 hover:border-0 sm:h-10 sm:w-10"
               >
                 <Mail size={16} strokeWidth={2.2} aria-hidden="true" />
               </a>

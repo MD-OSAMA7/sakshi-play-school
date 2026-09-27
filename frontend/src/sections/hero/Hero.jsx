@@ -9,6 +9,9 @@ function Hero() {
       <img
         src="/images/hero/hero.webp"
         alt="Happy children learning at Sakshi Play School"
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover object-center"
       />
 
@@ -53,7 +56,9 @@ function Hero() {
               <span className="block whitespace-nowrap text-pink-600 ">
                 <span className="inline-block -rotate-2 mr-1.5">Tomorrow</span>
 
-                <span className="inline-block rotate-0.5 -translate-y-1">Begins</span>
+                <span className="inline-block rotate-0.5 -translate-y-1">
+                  Begins
+                </span>
               </span>
 
               <span className="block whitespace-nowrap text-green-600 pl-16  md:pl-28 lg:pl-35 -rotate-3">

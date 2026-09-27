@@ -7,9 +7,15 @@ import Facilities from "../pages/Facilities/Facilities";
 import Admission from "../pages/Admission/Admission";
 import Gallery from "../pages/Gallery/Gallery";
 
+import AdminLogin from "../pages/Admin/AdminLogin/AdminLogin";
+import AdminDashboard from "../pages/Admin/AdminDashboard/AdminDashboard";
+
 function AppRoutes() {
   return (
     <Routes>
+      {/* =====================================================
+          PUBLIC WEBSITE ROUTES
+      ====================================================== */}
       <Route path="/" element={<Home />} />
 
       <Route path="/about" element={<About />} />
@@ -19,7 +25,15 @@ function AppRoutes() {
       <Route path="/facilities" element={<Facilities />} />
 
       <Route path="/admission" element={<Admission />} />
+
       <Route path="/gallery" element={<Gallery />} />
+
+      {/* =====================================================
+          ADMIN ROUTES
+      ====================================================== */}
+      <Route path="/admin/login" element={<AdminLogin />} />
+
+      <Route path="/admin/dashboard" element={<AdminDashboard />} />
     </Routes>
   );
 }

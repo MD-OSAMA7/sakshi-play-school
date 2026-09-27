@@ -8,7 +8,7 @@ function PortalSection() {
           {/* Staff Login */}
           <article className="rounded-3xl bg-sky-50 p-5  sm:p-6 lg:col-span-4">
             <div className="flex h-full items-center gap-4">
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-brand-navy/30 text-white sm:h-24 sm:w-24">
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-brand-navy text-white sm:h-24 sm:w-24">
                 <UserRound size={42} strokeWidth={1.8} aria-hidden="true" />
               </div>
 
@@ -16,7 +16,7 @@ function PortalSection() {
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-brand-navy" />
 
-                  <h2 className="text-xl font-extrabold leading-tight text-brand-navy">
+                  <h2 className="text-xl font-extrabold leading-7 text-brand-navy">
                     Staff Portal
                   </h2>
                 </div>
@@ -39,7 +39,7 @@ function PortalSection() {
           {/* Parent Login */}
           <article className="rounded-3xl bg-pink-50 p-5 shadow-card sm:p-6 lg:col-span-4">
             <div className="flex h-full items-center gap-4">
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-pink-600/30 text-white sm:h-24 sm:w-24">
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-pink-600 text-white sm:h-24 sm:w-24">
                 <UsersRound size={42} strokeWidth={1.8} aria-hidden="true" />
               </div>
 

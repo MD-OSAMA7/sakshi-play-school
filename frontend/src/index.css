@@ -6,6 +6,13 @@
    THEME
 ========================================================= */
 
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;600;700&family=Fauna+One&display=swap");
+
+@theme {
+  --font-heading: "Cinzel", serif;
+  --font-body: "Fauna One", sans-serif;
+}
+
 @theme {
   /* -------------------------------
      COLORS
@@ -29,8 +36,8 @@
      FONTS
   -------------------------------- */
 
-  --font-display: "Playfair Display", serif;
-  --font-sans: "Inter", sans-serif;
+  /* --font-display: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif; */
 
   /* -------------------------------
      SHADOWS
@@ -45,10 +52,6 @@
   --shadow-sticky:
     0 20px 25px -5px rgba(0, 37, 56, 0.15),
     0 10px 10px -5px rgba(0, 37, 56, 0.04);
-
- 
-
- 
 }
 
 /* =========================================================
@@ -181,4 +184,3 @@
     padding-inline: 2.5rem;
   }
 }
-

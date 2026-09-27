@@ -17,6 +17,8 @@ function About() {
                 <img
                   src="/images/about/about.webp"
                   alt="Child enjoying creative learning at Sakshi Play School"
+                  loading="lazy"
+                  decoding="async"
                   className="h-100% w-100% object-cover sm:h-96 md:h-104 lg:h-60"
                 />
               </div>
@@ -31,7 +33,7 @@ function About() {
                 <span className="text-pink-600"> Play School</span>
               </h2>
 
-              <p className="mt-3 text-base leading-6 text-text-secondary md:text-lg">
+              <p className="mt-3 text-sm leading-7 base:text-lg text-text-secondary md:text-[0.9rem]">
                 At Sakshi Play School, we believe that every child is special
                 and has unlimited potential. We provide a safe, caring and
                 joyful environment where children learn through play,
