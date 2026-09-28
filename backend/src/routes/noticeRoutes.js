@@ -1,5 +1,7 @@
 import express from "express";
 
+import requireClerkAuth from "../middleware/requireClerkAuth.js";
+
 import {
   createNotice,
   deleteNotice,
@@ -9,12 +11,14 @@ import {
 
 const router = express.Router();
 
+// Public: notices can be viewed without login.
 router.get("/", getNotices);
 
-router.post("/", createNotice);
+// Protected: admin authentication required.
+router.post("/", requireClerkAuth, createNotice);
 
-router.put("/:id", updateNotice);
+router.put("/:id", requireClerkAuth, updateNotice);
 
-router.delete("/:id", deleteNotice);
+router.delete("/:id", requireClerkAuth, deleteNotice);
 
 export default router;

@@ -1,6 +1,7 @@
 import express from "express";
 
 import upload from "../middleware/upload.js";
+import requireClerkAuth from "../middleware/requireClerkAuth.js";
 
 import {
   deleteGalleryImage,
@@ -11,12 +12,14 @@ import {
 
 const router = express.Router();
 
+// Public: website gallery can be viewed without login.
 router.get("/", getGalleryImages);
 
-router.post("/", upload.single("image"), uploadGalleryImage);
+// Protected: admin authentication required.
+router.post("/", requireClerkAuth, upload.single("image"), uploadGalleryImage);
 
-router.put("/:id", updateGalleryImage);
+router.put("/:id", requireClerkAuth, updateGalleryImage);
 
-router.delete("/:id", deleteGalleryImage);
+router.delete("/:id", requireClerkAuth, deleteGalleryImage);
 
 export default router;

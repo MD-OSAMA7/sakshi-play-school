@@ -1,5 +1,7 @@
 import express from "express";
 
+import requireClerkAuth from "../middleware/requireClerkAuth.js";
+
 import {
   createUtilityItem,
   deleteUtilityItem,
@@ -9,12 +11,14 @@ import {
 
 const router = express.Router();
 
+// Public: top bar items can be viewed without login.
 router.get("/", getUtilityItems);
 
-router.post("/", createUtilityItem);
+// Protected: admin authentication required.
+router.post("/", requireClerkAuth, createUtilityItem);
 
-router.put("/:id", updateUtilityItem);
+router.put("/:id", requireClerkAuth, updateUtilityItem);
 
-router.delete("/:id", deleteUtilityItem);
+router.delete("/:id", requireClerkAuth, deleteUtilityItem);
 
 export default router;

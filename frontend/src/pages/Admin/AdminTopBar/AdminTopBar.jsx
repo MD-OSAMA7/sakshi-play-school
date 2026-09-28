@@ -11,6 +11,8 @@ import {
   X,
 } from "lucide-react";
 
+import { useAuth } from "@clerk/react";
+
 import { Link } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
@@ -22,6 +24,8 @@ const emptyUtilityItem = {
 };
 
 function AdminTopBar() {
+  const { getToken } = useAuth();
+
   const [items, setItems] = useState([]);
   const [form, setForm] = useState(emptyUtilityItem);
 
@@ -52,10 +56,10 @@ function AdminTopBar() {
       }
 
       setItems(result.data);
-    } catch (error) {
-      console.error("Fetch top bar error:", error);
+    } catch (fetchError) {
+      console.error("Fetch top bar error:", fetchError);
 
-      setError(error.message || "Failed to load top bar items.");
+      setError(fetchError.message || "Failed to load top bar items.");
     } finally {
       setLoading(false);
     }
@@ -87,7 +91,6 @@ function AdminTopBar() {
 
     if (!form.label.trim() || !form.message.trim()) {
       setError("Please fill label and message.");
-
       return;
     }
 
@@ -102,10 +105,17 @@ function AdminTopBar() {
         ? `${API_URL}/api/utility/${editingId}`
         : `${API_URL}/api/utility`;
 
+      const token = await getToken();
+
+      if (!token) {
+        throw new Error("Authentication required. Please log in again.");
+      }
+
       const response = await fetch(url, {
         method: isEditing ? "PUT" : "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           label: form.label.trim(),
@@ -124,14 +134,17 @@ function AdminTopBar() {
         setItems((currentItems) =>
           currentItems
             .map((item) => (item._id === editingId ? result.data : item))
-            .sort((a, b) => a.displayOrder - b.displayOrder),
+            .sort(
+              (a, b) =>
+                Number(a.displayOrder ?? 0) - Number(b.displayOrder ?? 0),
+            ),
         );
 
         setMessage("Top bar item updated successfully.");
       } else {
         setItems((currentItems) =>
           [...currentItems, result.data].sort(
-            (a, b) => a.displayOrder - b.displayOrder,
+            (a, b) => Number(a.displayOrder ?? 0) - Number(b.displayOrder ?? 0),
           ),
         );
 
@@ -139,10 +152,10 @@ function AdminTopBar() {
       }
 
       resetForm();
-    } catch (error) {
-      console.error("Save top bar error:", error);
+    } catch (saveError) {
+      console.error("Save top bar error:", saveError);
 
-      setError(error.message || "Failed to save top bar item.");
+      setError(saveError.message || "Failed to save top bar item.");
     } finally {
       setSaving(false);
     }
@@ -188,8 +201,17 @@ function AdminTopBar() {
       setError("");
       setMessage("");
 
+      const token = await getToken();
+
+      if (!token) {
+        throw new Error("Authentication required. Please log in again.");
+      }
+
       const response = await fetch(`${API_URL}/api/utility/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       const result = await response.json();
@@ -207,10 +229,10 @@ function AdminTopBar() {
       }
 
       setMessage("Top bar item deleted successfully.");
-    } catch (error) {
-      console.error("Delete top bar error:", error);
+    } catch (deleteError) {
+      console.error("Delete top bar error:", deleteError);
 
-      setError(error.message || "Failed to delete top bar item.");
+      setError(deleteError.message || "Failed to delete top bar item.");
     } finally {
       setDeletingId(null);
     }

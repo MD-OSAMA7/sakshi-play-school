@@ -11,11 +11,14 @@ import {
   X,
 } from "lucide-react";
 
+import { useAuth } from "@clerk/react";
+
 import { Link } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 function AdminGallery() {
+  const { getToken } = useAuth();
   const fileInputRef = useRef(null);
 
   const [images, setImages] = useState([]);
@@ -181,8 +184,17 @@ function AdminGallery() {
         formData.append("displayOrder", displayOrder);
       }
 
+      const token = await getToken();
+
+      if (!token) {
+        throw new Error("Authentication required. Please log in again.");
+      }
+
       const response = await fetch(`${API_URL}/api/gallery`, {
         method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         body: formData,
       });
 
@@ -242,10 +254,17 @@ function AdminGallery() {
       setError("");
       setMessage("");
 
+      const token = await getToken();
+
+      if (!token) {
+        throw new Error("Authentication required. Please log in again.");
+      }
+
       const response = await fetch(`${API_URL}/api/gallery/${editingImageId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           title: editTitle.trim(),
@@ -289,8 +308,17 @@ function AdminGallery() {
       setError("");
       setMessage("");
 
+      const token = await getToken();
+
+      if (!token) {
+        throw new Error("Authentication required. Please log in again.");
+      }
+
       const response = await fetch(`${API_URL}/api/gallery/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       const result = await response.json();

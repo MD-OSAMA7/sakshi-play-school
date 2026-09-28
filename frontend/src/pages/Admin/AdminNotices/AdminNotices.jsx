@@ -11,6 +11,8 @@ import {
   X,
 } from "lucide-react";
 
+import { useAuth } from "@clerk/react";
+
 import { Link } from "react-router-dom";
 
 import { readCache, writeCache } from "../../../utils/cache";
@@ -28,9 +30,12 @@ const emptyNotice = {
 };
 
 function AdminNotices() {
+  const { getToken } = useAuth();
+
   const [notices, setNotices] = useState(() =>
-    readCache("sakshi_notices_cache", []),
+    readCache(SAKSHI_NOTICES_CACHE, []),
   );
+
   const [noticeForm, setNoticeForm] = useState(emptyNotice);
 
   const [editingId, setEditingId] = useState(null);
@@ -47,7 +52,7 @@ function AdminNotices() {
   ========================================================== */
 
   const fetchNotices = async () => {
-    const cachedNotices = readCache("sakshi_notices_cache", []);
+    const cachedNotices = readCache(SAKSHI_NOTICES_CACHE, []);
 
     if (!cachedNotices.length) {
       setLoading(true);
@@ -66,13 +71,13 @@ function AdminNotices() {
       const latestNotices = Array.isArray(result.data) ? result.data : [];
 
       setNotices(latestNotices);
-      writeCache("sakshi_notices_cache", latestNotices);
-    } catch (error) {
-      console.error("Fetch notices error:", error);
+      writeCache(SAKSHI_NOTICES_CACHE, latestNotices);
+    } catch (fetchError) {
+      console.error("Fetch notices error:", fetchError);
 
       // Cached data stays visible when the API is unavailable.
       if (!cachedNotices.length) {
-        setError(error.message || "Failed to load notices.");
+        setError(fetchError.message || "Failed to load notices.");
       }
     } finally {
       setLoading(false);
@@ -124,10 +129,17 @@ function AdminNotices() {
         ? `${API_URL}/api/notices/${editingId}`
         : `${API_URL}/api/notices`;
 
+      const token = await getToken();
+
+      if (!token) {
+        throw new Error("Authentication required. Please log in again.");
+      }
+
       const response = await fetch(url, {
         method: isEditing ? "PUT" : "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           day: noticeForm.day.trim(),
@@ -150,7 +162,7 @@ function AdminNotices() {
             .map((item) => (item._id === editingId ? result.data : item))
             .sort((a, b) => a.displayOrder - b.displayOrder);
 
-          writeCache("sakshi_notices_cache", updatedNotices);
+          writeCache(SAKSHI_NOTICES_CACHE, updatedNotices);
 
           return updatedNotices;
         });
@@ -162,7 +174,7 @@ function AdminNotices() {
             (a, b) => a.displayOrder - b.displayOrder,
           );
 
-          writeCache("sakshi_notices_cache", updatedNotices);
+          writeCache(SAKSHI_NOTICES_CACHE, updatedNotices);
 
           return updatedNotices;
         });
@@ -171,10 +183,10 @@ function AdminNotices() {
       }
 
       resetForm();
-    } catch (error) {
-      console.error("Save notice error:", error);
+    } catch (saveError) {
+      console.error("Save notice error:", saveError);
 
-      setError(error.message || "Failed to save notice.");
+      setError(saveError.message || "Failed to save notice.");
     } finally {
       setSaving(false);
     }
@@ -222,8 +234,17 @@ function AdminNotices() {
       setError("");
       setMessage("");
 
+      const token = await getToken();
+
+      if (!token) {
+        throw new Error("Authentication required. Please log in again.");
+      }
+
       const response = await fetch(`${API_URL}/api/notices/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       const result = await response.json();
@@ -235,7 +256,7 @@ function AdminNotices() {
       setNotices((currentNotices) => {
         const updatedNotices = currentNotices.filter((item) => item._id !== id);
 
-        writeCache("sakshi_notices_cache", updatedNotices);
+        writeCache(SAKSHI_NOTICES_CACHE, updatedNotices);
 
         return updatedNotices;
       });
@@ -245,10 +266,10 @@ function AdminNotices() {
       }
 
       setMessage("Notice deleted successfully.");
-    } catch (error) {
-      console.error("Delete notice error:", error);
+    } catch (deleteError) {
+      console.error("Delete notice error:", deleteError);
 
-      setError(error.message || "Failed to delete notice.");
+      setError(deleteError.message || "Failed to delete notice.");
     } finally {
       setDeletingId(null);
     }

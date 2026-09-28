@@ -1,5 +1,7 @@
 import express from "express";
 
+import requireClerkAuth from "../middleware/requireClerkAuth.js";
+
 import {
   createEvent,
   deleteEvent,
@@ -9,12 +11,14 @@ import {
 
 const router = express.Router();
 
+// Public: events can be viewed without login.
 router.get("/", getEvents);
 
-router.post("/", createEvent);
+// Protected: admin authentication required.
+router.post("/", requireClerkAuth, createEvent);
 
-router.put("/:id", updateEvent);
+router.put("/:id", requireClerkAuth, updateEvent);
 
-router.delete("/:id", deleteEvent);
+router.delete("/:id", requireClerkAuth, deleteEvent);
 
 export default router;

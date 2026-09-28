@@ -2,6 +2,7 @@ import "dotenv/config";
 
 import express from "express";
 import cors from "cors";
+import { clerkMiddleware } from "@clerk/express";
 
 import connectDB from "./config/db.js";
 import cloudinary from "./config/cloudinary.js";
@@ -14,6 +15,13 @@ import utilityRoutes from "./routes/utilityRoutes.js";
 const app = express();
 
 const PORT = process.env.PORT || 5000;
+
+// Clerk authentication middleware
+app.use(
+  clerkMiddleware({
+    authorizedParties: ["http://localhost:5173"],
+  }),
+);
 
 connectDB();
 
@@ -63,5 +71,5 @@ app.use("/api/notices", noticeRoutes);
 app.use("/api/utility", utilityRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

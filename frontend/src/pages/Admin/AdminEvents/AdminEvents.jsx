@@ -11,6 +11,8 @@ import {
   X,
 } from "lucide-react";
 
+import { useAuth } from "@clerk/react";
+
 import { Link } from "react-router-dom";
 
 import { readCache, writeCache } from "../../../utils/cache";
@@ -28,11 +30,13 @@ const emptyEvent = {
 };
 
 function AdminEvents() {
-  const [events, setEvents] = useState(() =>
-    readCache("sakshi_events_cache", []),
-  );
-  const [eventForm, setEventForm] = useState(emptyEvent);
+  const { getToken } = useAuth();
 
+  const [events, setEvents] = useState(() =>
+    readCache(SAKSHI_EVENTS_CACHE, []),
+  );
+
+  const [eventForm, setEventForm] = useState(emptyEvent);
   const [editingId, setEditingId] = useState(null);
 
   const [loading, setLoading] = useState(true);
@@ -47,7 +51,7 @@ function AdminEvents() {
   ========================================================== */
 
   const fetchEvents = async () => {
-    const cachedEvents = readCache("sakshi_events_cache", []);
+    const cachedEvents = readCache(SAKSHI_EVENTS_CACHE, []);
 
     if (!cachedEvents.length) {
       setLoading(true);
@@ -66,13 +70,13 @@ function AdminEvents() {
       const latestEvents = Array.isArray(result.data) ? result.data : [];
 
       setEvents(latestEvents);
-      writeCache("sakshi_events_cache", latestEvents);
-    } catch (error) {
-      console.error("Fetch events error:", error);
+      writeCache(SAKSHI_EVENTS_CACHE, latestEvents);
+    } catch (fetchError) {
+      console.error("Fetch events error:", fetchError);
 
       // Cached data stays visible when the API is unavailable.
       if (!cachedEvents.length) {
-        setError(error.message || "Failed to load events.");
+        setError(fetchError.message || "Failed to load events.");
       }
     } finally {
       setLoading(false);
@@ -124,10 +128,17 @@ function AdminEvents() {
         ? `${API_URL}/api/events/${editingId}`
         : `${API_URL}/api/events`;
 
+      const token = await getToken();
+
+      if (!token) {
+        throw new Error("Authentication required. Please log in again.");
+      }
+
       const response = await fetch(url, {
         method: isEditing ? "PUT" : "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           day: eventForm.day.trim(),
@@ -148,9 +159,12 @@ function AdminEvents() {
         setEvents((currentEvents) => {
           const updatedEvents = currentEvents
             .map((item) => (item._id === editingId ? result.data : item))
-            .sort((a, b) => a.displayOrder - b.displayOrder);
+            .sort(
+              (a, b) =>
+                Number(a.displayOrder ?? 0) - Number(b.displayOrder ?? 0),
+            );
 
-          writeCache("sakshi_events_cache", updatedEvents);
+          writeCache(SAKSHI_EVENTS_CACHE, updatedEvents);
 
           return updatedEvents;
         });
@@ -159,10 +173,10 @@ function AdminEvents() {
       } else {
         setEvents((currentEvents) => {
           const updatedEvents = [...currentEvents, result.data].sort(
-            (a, b) => a.displayOrder - b.displayOrder,
+            (a, b) => Number(a.displayOrder ?? 0) - Number(b.displayOrder ?? 0),
           );
 
-          writeCache("sakshi_events_cache", updatedEvents);
+          writeCache(SAKSHI_EVENTS_CACHE, updatedEvents);
 
           return updatedEvents;
         });
@@ -171,10 +185,10 @@ function AdminEvents() {
       }
 
       resetForm();
-    } catch (error) {
-      console.error("Save event error:", error);
+    } catch (saveError) {
+      console.error("Save event error:", saveError);
 
-      setError(error.message || "Failed to save event.");
+      setError(saveError.message || "Failed to save event.");
     } finally {
       setSaving(false);
     }
@@ -222,8 +236,17 @@ function AdminEvents() {
       setError("");
       setMessage("");
 
+      const token = await getToken();
+
+      if (!token) {
+        throw new Error("Authentication required. Please log in again.");
+      }
+
       const response = await fetch(`${API_URL}/api/events/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       const result = await response.json();
@@ -235,7 +258,7 @@ function AdminEvents() {
       setEvents((currentEvents) => {
         const updatedEvents = currentEvents.filter((item) => item._id !== id);
 
-        writeCache("sakshi_events_cache", updatedEvents);
+        writeCache(SAKSHI_EVENTS_CACHE, updatedEvents);
 
         return updatedEvents;
       });
@@ -245,10 +268,10 @@ function AdminEvents() {
       }
 
       setMessage("Event deleted successfully.");
-    } catch (error) {
-      console.error("Delete event error:", error);
+    } catch (deleteError) {
+      console.error("Delete event error:", deleteError);
 
-      setError(error.message || "Failed to delete event.");
+      setError(deleteError.message || "Failed to delete event.");
     } finally {
       setDeletingId(null);
     }
