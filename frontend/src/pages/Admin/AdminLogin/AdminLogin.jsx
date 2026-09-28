@@ -181,8 +181,8 @@ function AdminLogin() {
             </h1>
 
             <p className="mt-3 text-sm leading-6 text-text-secondary sm:text-base">
-              Sign in using your authorized Google account or admin email and
-              password.
+              Sign in using your authorized email and password or continue with
+              Google.
             </p>
           </div>
 
@@ -200,49 +200,10 @@ function AdminLogin() {
           )}
 
           {/* =================================================
-              GOOGLE LOGIN
-          ================================================== */}
-
-          <div className="mt-7">
-            <button
-              type="button"
-              onClick={handleGoogleLogin}
-              disabled={!isLoaded || googleLoading}
-              className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-6 text-sm font-bold text-text-primary shadow-button transition-all duration-200 hover:border-brand-blue hover:bg-gray-50 hover:shadow-button-hover disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              {googleLoading ? (
-                <LoaderCircle
-                  size={18}
-                  className="animate-spin"
-                  aria-hidden="true"
-                />
-              ) : (
-                <FaGoogle size={18} aria-hidden="true" />
-              )}
-
-              {googleLoading ? "Connecting..." : "Continue with Google"}
-            </button>
-          </div>
-
-          {/* =================================================
-              DIVIDER
-          ================================================== */}
-
-          <div className="my-6 flex items-center gap-3">
-            <div className="h-px flex-1 bg-gray-200" />
-
-            <span className="shrink-0 text-xs font-bold uppercase tracking-wide text-gray-400">
-              Or
-            </span>
-
-            <div className="h-px flex-1 bg-gray-200" />
-          </div>
-
-          {/* =================================================
               EMAIL + PASSWORD
           ================================================== */}
 
-          <form onSubmit={handleEmailLogin} className="space-y-5">
+          <form onSubmit={handleEmailLogin} className="mt-7 space-y-5">
             {/* Email */}
 
             <div>
@@ -313,7 +274,7 @@ function AdminLogin() {
               </div>
             </div>
 
-            {/* Sign In */}
+            {/* Email Sign In */}
 
             <button
               type="submit"
@@ -334,6 +295,43 @@ function AdminLogin() {
               )}
             </button>
           </form>
+
+          {/* =================================================
+              DIVIDER
+          ================================================== */}
+
+          <div className="my-6 flex items-center gap-3">
+            <div className="h-px flex-1 bg-gray-200" />
+
+            <span className="shrink-0 text-xs font-bold uppercase tracking-wide text-gray-400">
+              Or
+            </span>
+
+            <div className="h-px flex-1 bg-gray-200" />
+          </div>
+
+          {/* =================================================
+              GOOGLE LOGIN
+          ================================================== */}
+
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            disabled={!isLoaded || googleLoading}
+            className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-6 text-sm font-bold text-text-primary shadow-button transition-all duration-200 hover:border-brand-blue hover:bg-gray-50 hover:shadow-button-hover disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {googleLoading ? (
+              <LoaderCircle
+                size={18}
+                className="animate-spin"
+                aria-hidden="true"
+              />
+            ) : (
+              <FaGoogle size={18} aria-hidden="true" />
+            )}
+
+            {googleLoading ? "Connecting..." : "Continue with Google"}
+          </button>
 
           {/* =================================================
               AUTHORIZATION NOTE
