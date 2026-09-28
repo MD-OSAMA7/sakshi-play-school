@@ -34,32 +34,28 @@ const whyChooseData = [
   {
     id: 2,
     title: "Play-Based Learning",
-    description:
-      "Fun activities that make learning joyful and effective.",
+    description: "Fun activities that make learning joyful and effective.",
     icon: Sparkles,
     iconClass: "bg-amber-500 text-white",
   },
   {
     id: 3,
     title: "Caring & Experienced Teachers",
-    description:
-      "A loving and supportive team for your child's growth.",
+    description: "A loving and supportive team for your child's growth.",
     icon: UsersRound,
     iconClass: "bg-green-600 text-white",
   },
   {
     id: 4,
     title: "Safe & Secure Environment",
-    description:
-      "A clean, hygienic and family-friendly campus.",
+    description: "A clean, hygienic and family-friendly campus.",
     icon: ShieldCheck,
     iconClass: "bg-blue-600 text-white",
   },
   {
     id: 5,
     title: "Holistic Development",
-    description:
-      "Focus on social, emotional, physical and cognitive growth.",
+    description: "Focus on social, emotional, physical and cognitive growth.",
     icon: Star,
     iconClass: "bg-pink-500 text-white",
   },
@@ -70,8 +66,7 @@ const admissionSteps = [
     id: 1,
     number: "01",
     title: "Fill the Form",
-    description:
-      "Submit the admission form online or at the school office.",
+    description: "Submit the admission form online or at the school office.",
     icon: ClipboardList,
     iconClass: "bg-pink-600 text-white",
   },
@@ -79,8 +74,7 @@ const admissionSteps = [
     id: 2,
     number: "02",
     title: "Interaction / Visit",
-    description:
-      "Meet our team and take a campus tour.",
+    description: "Meet our team and take a campus tour.",
     icon: UsersRound,
     iconClass: "bg-brand-gold text-brand-navy",
   },
@@ -88,8 +82,7 @@ const admissionSteps = [
     id: 3,
     number: "03",
     title: "Submission of Documents",
-    description:
-      "Submit the required documents for admission.",
+    description: "Submit the required documents for admission.",
     icon: FileText,
     iconClass: "bg-green-600 text-white",
   },
@@ -97,8 +90,7 @@ const admissionSteps = [
     id: 4,
     number: "04",
     title: "Confirmation",
-    description:
-      "Receive confirmation and complete the formalities.",
+    description: "Receive confirmation and complete the formalities.",
     icon: CheckCircle2,
     iconClass: "bg-brand-blue text-white",
   },
@@ -142,13 +134,9 @@ function Admission() {
               {/* Main Heading */}
               <div className="relative mt-2 w-fit">
                 <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl lg:text-6xl">
-                  <span className="-rotate-1 inline-block">
-                    Admission
-                  </span>
+                  <span className="-rotate-1 inline-block">Admission</span>
 
-                  <span className="rotate-1 inline-block text-pink-600">
-                    s
-                  </span>
+                  <span className="rotate-1 inline-block text-pink-600">s</span>
                 </h1>
 
                 <div className="mt-1 flex items-center gap-2">
@@ -182,8 +170,7 @@ function Admission() {
 
               {/* Subtitle */}
               <p className="mt-5 max-w-xl text-base font-medium leading-7 text-text-secondary sm:text-lg">
-                Give your child the best start for a brighter
-                tomorrow.
+                Give your child the best start for a brighter tomorrow.
               </p>
 
               {/* Breadcrumb */}
@@ -195,13 +182,9 @@ function Admission() {
                   Home
                 </Link>
 
-                <span className="text-text-secondary">
-                  /
-                </span>
+                <span className="text-text-secondary">/</span>
 
-                <span className="text-brand-navy">
-                  Admission
-                </span>
+                <span className="text-brand-navy">Admission</span>
               </div>
             </div>
 
@@ -261,17 +244,9 @@ function Admission() {
             </p>
 
             <h2 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
-              Why Choose{" "}
-              <span className="text-pink-600">
-                Sakshi
-              </span>{" "}
-              <span className="text-brand-gold">
-                Play
-              </span>{" "}
-              <span className="text-green-600">
-                School
-              </span>{" "}
-              ?
+              Why Choose <span className="text-pink-600">Sakshi</span>{" "}
+              <span className="text-brand-gold">Play</span>{" "}
+              <span className="text-green-600">School</span> ?
             </h2>
 
             <div className="mx-auto mt-4 flex items-center justify-center gap-2">
@@ -285,9 +260,8 @@ function Admission() {
             </div>
 
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-text-secondary sm:text-base">
-              A safe, modern and nurturing environment where
-              children learn through play, discover their abilities
-              and grow with confidence.
+              A safe, modern and nurturing environment where children learn
+              through play, discover their abilities and grow with confidence.
             </p>
           </div>
 
@@ -304,11 +278,7 @@ function Admission() {
                   <div
                     className={`mx-auto flex h-12 w-12 items-center justify-center rounded-full ${item.iconClass}`}
                   >
-                    <Icon
-                      size={23}
-                      strokeWidth={2}
-                      aria-hidden="true"
-                    />
+                    <Icon size={23} strokeWidth={2} aria-hidden="true" />
                   </div>
 
                   <h3 className="mt-4 text-base font-extrabold leading-5 text-brand-navy">
@@ -338,17 +308,13 @@ function Admission() {
               </p>
 
               <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
-                Admission{" "}
-                <span className="text-pink-600">
-                  Process
-                </span>
+                Admission <span className="text-pink-600">Process</span>
               </h2>
 
               <div className="mt-4 h-1 w-14 rounded-full bg-brand-gold" />
 
               <p className="mt-4 max-w-2xl text-sm leading-6 text-text-secondary sm:text-base">
-                A simple and transparent process to make admission
-                easy for you.
+                A simple and transparent process to make admission easy for you.
               </p>
 
               <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -369,11 +335,7 @@ function Admission() {
                       <div
                         className={`mx-auto flex h-12 w-12 items-center justify-center rounded-full ${step.iconClass}`}
                       >
-                        <Icon
-                          size={22}
-                          strokeWidth={2}
-                          aria-hidden="true"
-                        />
+                        <Icon size={22} strokeWidth={2} aria-hidden="true" />
                       </div>
 
                       <h3 className="mt-4 text-base font-extrabold leading-5 text-brand-navy">
@@ -425,7 +387,9 @@ function Admission() {
       {/* =====================================================
           EVENTS + NOTICE
       ====================================================== */}
-      <EventsNoticeSection />
+      <section id="events-notices" className="scroll-mt-6">
+        <EventsNoticeSection showAll />
+      </section>
 
       {/* =====================================================
           APPLY + HELP
@@ -437,7 +401,7 @@ function Admission() {
             <article className="relative overflow-hidden rounded-3xl bg-yellow-100 px-6 py-8 sm:px-8 sm:py-10">
               <div className="flex items-center gap-6">
                 {/* Megaphone */}
-                <span className="flex h-60 w-50 shrink-0 items-center justify-center">
+                <span className="hidden sm:flex h-60 w-50 shrink-0 items-center justify-center">
                   <Megaphone
                     size={150}
                     strokeWidth={1}
@@ -449,16 +413,16 @@ function Admission() {
                 {/* All Text + Button */}
                 <div className="relative z-10">
                   <h2 className="text-3xl font-extrabold leading-tight text-brand-navy sm:text-3xl">
-                    Admissions Open for
+                    Admissions Open for <span className="sm:hidden text-pink-600">2026-27</span>
                   </h2>
 
-                  <h1 className="text-3xl font-extrabold leading-tight text-pink-600 sm:text-4xl">
+                  <h1 className="hidden sm:inline-block text-3xl font-extrabold leading-tight text-pink-600 sm:text-4xl">
                     2026-27
                   </h1>
 
                   <p className="mt-1 max-w-xl text-sm leading-6 text-brand-navy/80 sm:text-base">
-                    Seats are limited! Enrol now and give your child
-                    a joyful early learning experience.
+                    Seats are limited! Enrol now and give your child a joyful
+                    early learning experience.
                   </p>
 
                   <Link
@@ -466,10 +430,7 @@ function Admission() {
                     className="mt-5 inline-flex min-h-10 items-center justify-center gap-2 rounded-full bg-pink-600 px-4 text-sm font-bold text-white transition-colors duration-200 hover:bg-pink-700"
                   >
                     Apply for Admission
-                    <ArrowRight
-                      size={16}
-                      aria-hidden="true"
-                    />
+                    <ArrowRight size={16} aria-hidden="true" />
                   </Link>
                 </div>
               </div>
@@ -478,24 +439,17 @@ function Admission() {
             {/* Help Card */}
             <article className="rounded-3xl bg-white p-6 shadow-card sm:p-8">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-pink-50 text-pink-600">
-                  <HeartHandshake
-                    size={24}
-                    aria-hidden="true"
-                  />
+                <div className="hidden sm:flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-pink-50 text-pink-600">
+                  <HeartHandshake size={24} aria-hidden="true" />
                 </div>
 
                 <div>
                   <h2 className="mt-1 text-2xl font-extrabold text-brand-navy sm:text-3xl">
-                    We're Here to{" "}
-                    <span className="text-pink-600">
-                      Help
-                    </span>
+                    We're Here to <span className="text-pink-600">Help</span>
                   </h2>
 
                   <p className="mt-2 text-sm leading-6 text-text-secondary">
-                    Feel free to contact us for any admission-related
-                    queries.
+                    Feel free to contact us for any admission-related queries.
                   </p>
                 </div>
               </div>
@@ -582,15 +536,13 @@ function Admission() {
           <div className="overflow-hidden rounded-3xl bg-sky-50 px-6 py-10 text-center sm:px-10 lg:px-16 lg:py-12">
             <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-3xl lg:text-4xl">
               A Happy Beginning for a{" "}
-              <span className="text-pink-600">
-                Brighter Future
-              </span>
+              <span className="text-pink-600">Brighter Future</span>
             </h2>
 
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-text-secondary sm:text-base">
-              At Sakshi Play School, we believe every child deserves
-              the right environment to learn, grow and shine. Join us
-              in this beautiful journey of early learning.
+              At Sakshi Play School, we believe every child deserves the right
+              environment to learn, grow and shine. Join us in this beautiful
+              journey of early learning.
             </p>
 
             <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -599,20 +551,14 @@ function Admission() {
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-pink-600 px-6 text-sm font-bold text-white shadow-button transition-all duration-200 hover:bg-pink-700 hover:shadow-button-hover"
               >
                 Get in Touch
-                <ArrowRight
-                  size={17}
-                  aria-hidden="true"
-                />
+                <ArrowRight size={17} aria-hidden="true" />
               </Link>
 
               <a
                 href="tel:+916475222072"
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-brand-navy bg-white px-6 text-sm font-bold text-brand-navy transition-colors duration-200 hover:bg-brand-navy hover:text-white"
               >
-                <Phone
-                  size={17}
-                  aria-hidden="true"
-                />
+                <Phone size={17} aria-hidden="true" />
                 Call Us
               </a>
             </div>

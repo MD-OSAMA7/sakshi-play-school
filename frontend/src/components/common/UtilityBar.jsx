@@ -1,8 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { ArrowRight, Megaphone } from "lucide-react";
 
-const utilityItems = [
+import { readCache, writeCache } from "../../utils/cache";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+const UTILITY_CACHE_KEY = "sakshi_utility_cache";
+
+const defaultUtilityItems = [
   {
     id: 1,
     label: "ANNOUNCEMENT",
@@ -36,11 +42,42 @@ const utilityItems = [
 ];
 
 function UtilityBar() {
+  const [utilityItems, setUtilityItems] = useState(() =>
+    readCache(UTILITY_CACHE_KEY, defaultUtilityItems),
+  );
+
   const trackRef = useRef(null);
   const firstGroupRef = useRef(null);
 
   const offsetRef = useRef(0);
   const pausedRef = useRef(false);
+
+  useEffect(() => {
+    const fetchUtilityItems = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/utility`);
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch utility items.");
+        }
+
+        const result = await response.json();
+
+        if (!result.success) {
+          throw new Error(result.message || "Failed to fetch utility items.");
+        }
+
+        const items = Array.isArray(result.data) ? result.data : [];
+
+        setUtilityItems(items);
+        writeCache(UTILITY_CACHE_KEY, items);
+      } catch (error) {
+        console.error("Utility bar fetch error:", error);
+      }
+    };
+
+    fetchUtilityItems();
+  }, []);
 
   useEffect(() => {
     let animationFrame;
@@ -56,13 +93,15 @@ function UtilityBar() {
       if (!pausedRef.current && trackRef.current && firstGroupRef.current) {
         const groupWidth = firstGroupRef.current.getBoundingClientRect().width;
 
-        offsetRef.current += (speed * deltaTime) / 1000;
+        if (groupWidth > 0) {
+          offsetRef.current += (speed * deltaTime) / 1000;
 
-        if (offsetRef.current >= groupWidth) {
-          offsetRef.current -= groupWidth;
+          if (offsetRef.current >= groupWidth) {
+            offsetRef.current -= groupWidth;
+          }
+
+          trackRef.current.style.transform = `translate3d(-${offsetRef.current}px, 0, 0)`;
         }
-
-        trackRef.current.style.transform = `translate3d(-${offsetRef.current}px, 0, 0)`;
       }
 
       animationFrame = requestAnimationFrame(animate);
@@ -96,9 +135,9 @@ function UtilityBar() {
             ref={firstGroupRef}
             className="flex h-full shrink-0 items-center"
           >
-            {utilityItems.map((item) => (
+            {utilityItems.map((item, index) => (
               <div
-                key={`first-${item.id}`}
+                key={`first-${item._id || item.id || index}`}
                 className="flex h-full shrink-0 items-center"
               >
                 {/* Announcement Item */}
@@ -141,9 +180,9 @@ function UtilityBar() {
 
           {/* Second Identical Group */}
           <div className="flex h-full shrink-0 items-center">
-            {utilityItems.map((item) => (
+            {utilityItems.map((item, index) => (
               <div
-                key={`second-${item.id}`}
+                key={`second-${item._id || item.id || index}`}
                 className="flex h-full shrink-0 items-center"
               >
                 {/* Announcement Item */}

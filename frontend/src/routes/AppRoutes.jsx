@@ -9,6 +9,12 @@ import Gallery from "../pages/Gallery/Gallery";
 
 import AdminLogin from "../pages/Admin/AdminLogin/AdminLogin";
 import AdminDashboard from "../pages/Admin/AdminDashboard/AdminDashboard";
+import AdminGallery from "../pages/Admin/AdminGallery/AdminGallery";
+import AdminEvents from "../pages/Admin/AdminEvents/AdminEvents";
+import AdminNotices from "../pages/Admin/AdminNotices/AdminNotices";
+import AdminTopBar from "../pages/Admin/AdminTopBar/AdminTopBar";
+
+import ProtectedAdminRoute from "./ProtectedAdminRoute";
 
 function AppRoutes() {
   return (
@@ -29,11 +35,24 @@ function AppRoutes() {
       <Route path="/gallery" element={<Gallery />} />
 
       {/* =====================================================
-          ADMIN ROUTES
+          ADMIN LOGIN
       ====================================================== */}
       <Route path="/admin/login" element={<AdminLogin />} />
 
-      <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      {/* =====================================================
+          PROTECTED ADMIN ROUTES
+      ====================================================== */}
+      <Route element={<ProtectedAdminRoute />}>
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+
+        <Route path="/admin/gallery" element={<AdminGallery />} />
+
+        <Route path="/admin/events" element={<AdminEvents />} />
+
+        <Route path="/admin/notices" element={<AdminNotices />} />
+
+        <Route path="/admin/top-bar" element={<AdminTopBar />} />
+      </Route>
     </Routes>
   );
 }
