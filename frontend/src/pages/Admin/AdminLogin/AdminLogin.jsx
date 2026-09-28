@@ -1,168 +1,379 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import { useAuth, useClerk } from "@clerk/react";
+import { Eye, EyeOff, LoaderCircle, ShieldCheck } from "lucide-react";
+
+import { useAuth, useClerk, useSignIn } from "@clerk/react";
+
 import { FaGoogle } from "react-icons/fa";
-import { ShieldCheck } from "lucide-react";
 
 import { Link, useNavigate } from "react-router-dom";
 
 function AdminLogin() {
   const navigate = useNavigate();
+
   const clerk = useClerk();
+
   const { isLoaded, isSignedIn } = useAuth();
+
+  const { signIn, fetchStatus } = useSignIn();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [error, setError] = useState("");
+
+  const [googleLoading, setGoogleLoading] = useState(false);
+  const [emailLoading, setEmailLoading] = useState(false);
+
+  /* =========================================================
+     REDIRECT IF ALREADY SIGNED IN
+  ========================================================== */
 
   useEffect(() => {
     if (isLoaded && isSignedIn) {
-      navigate("/admin/dashboard", { replace: true });
+      navigate("/admin/dashboard", {
+        replace: true,
+      });
     }
   }, [isLoaded, isSignedIn, navigate]);
 
-  const handleGoogleLogin = () => {
-    clerk.openSignIn({
-      forceRedirectUrl: "/admin/dashboard",
-      signUpForceRedirectUrl: "/admin/dashboard",
-      withSignUp: false,
-      transferable: false,
-      oauthFlow: "redirect",
-    });
+  /* =========================================================
+     GOOGLE LOGIN
+  ========================================================== */
+
+  const handleGoogleLogin = async () => {
+    if (!isLoaded) {
+      return;
+    }
+
+    try {
+      setGoogleLoading(true);
+      setError("");
+
+      await clerk.openSignIn({
+        forceRedirectUrl: "/admin/dashboard",
+        signUpForceRedirectUrl: "/admin/dashboard",
+        withSignUp: false,
+        transferable: false,
+        oauthFlow: "redirect",
+      });
+    } catch (loginError) {
+      console.error("Google login error:", loginError);
+
+      setError(loginError?.message || "Google login failed. Please try again.");
+
+      setGoogleLoading(false);
+    }
   };
+
+  /* =========================================================
+     EMAIL + PASSWORD LOGIN
+  ========================================================== */
+
+  const handleEmailLogin = async (event) => {
+    event.preventDefault();
+
+    if (!isLoaded || !signIn) {
+      return;
+    }
+
+    const cleanEmail = email.trim();
+
+    if (!cleanEmail || !password) {
+      setError("Please enter email and password.");
+      return;
+    }
+
+    try {
+      setEmailLoading(true);
+      setError("");
+
+      const { error: signInError } = await signIn.password({
+        emailAddress: cleanEmail,
+        password,
+      });
+
+      if (signInError) {
+        setError(signInError.message || "Invalid email or password.");
+
+        return;
+      }
+
+      /* =====================================================
+         SUCCESSFUL PASSWORD LOGIN
+      ====================================================== */
+
+      if (signIn.status === "complete") {
+        const { error: finalizeError } = await signIn.finalize({
+          navigate: async () => {
+            navigate("/admin/dashboard", {
+              replace: true,
+            });
+          },
+        });
+
+        if (finalizeError) {
+          setError(finalizeError.message || "Unable to complete login.");
+        }
+
+        return;
+      }
+
+      /* =====================================================
+         ADDITIONAL AUTHENTICATION REQUIREMENTS
+      ====================================================== */
+
+      if (signIn.status === "needs_second_factor") {
+        setError("Additional verification is required for this account.");
+
+        return;
+      }
+
+      if (signIn.status === "needs_client_trust") {
+        setError("This device needs additional verification before login.");
+
+        return;
+      }
+
+      setError("Login could not be completed. Please try again.");
+    } catch (loginError) {
+      console.error("Email login error:", loginError);
+
+      setError(loginError?.message || "Invalid email or password.");
+    } finally {
+      setEmailLoading(false);
+    }
+  };
+
+  const isEmailSubmitting = emailLoading || fetchStatus === "fetching";
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-sky-50 px-4 py-8 font-sans sm:px-6">
-      <div className="grid w-full max-w-5xl overflow-hidden rounded-3xl bg-white shadow-floating lg:grid-cols-2">
-        {/* =================================================
-            LEFT SIDE
-        ================================================== */}
-        <div className="relative hidden overflow-hidden bg-brand-navy lg:block">
-          {/* Decorative circles */}
-          <div
-            aria-hidden="true"
-            className="absolute -left-16 -top-16 h-40 w-40 rounded-full bg-brand-blue/30"
-          />
+      <div className="w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-floating">
+        <div className="p-6 sm:p-8 lg:p-10">
+          {/* =================================================
+              LOGO
+          ================================================== */}
 
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-20 -right-16 h-52 w-52 rounded-full bg-brand-gold/20"
-          />
-
-          <div className="relative z-10 flex h-full flex-col justify-between p-10">
-            {/* Logo */}
-            <Link
-              to="/"
-              aria-label="Sakshi Play School home"
-              className="inline-block"
-            >
+          <div className="mb-7 flex justify-center">
+            <Link to="/" aria-label="Sakshi Play School home">
               <img
                 src="/images/logo.png"
                 alt="Sakshi Play School"
                 className="h-20 w-auto object-contain"
               />
             </Link>
+          </div>
 
-            {/* Content */}
-            <div className="py-10">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-gold text-brand-navy">
-                <ShieldCheck size={25} strokeWidth={2} aria-hidden="true" />
-              </div>
+          {/* =================================================
+              LOGIN HEADING
+          ================================================== */}
 
-              <p className="mt-6 text-sm font-bold uppercase tracking-wide text-brand-gold">
-                Secure Administration
-              </p>
+          <div className="text-center">
+            <p className="text-sm font-bold uppercase tracking-wide text-brand-blue">
+              Administration
+            </p>
 
-              <h1 className="mt-2 max-w-md text-4xl font-extrabold leading-tight text-white">
-                Welcome to <span className="text-pink-400">Admin Portal</span>
-              </h1>
+            <h1 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl">
+              Admin <span className="text-pink-600">Login</span>
+            </h1>
 
-              <p className="mt-5 max-w-md text-base leading-7 text-white/75">
-                Manage your school website content, gallery, events and notices
-                from one convenient place.
-              </p>
-            </div>
-
-            {/* Footer */}
-            <p className="text-xs text-white/50">
-              Sakshi Play School Admin Panel
+            <p className="mt-3 text-sm leading-6 text-text-secondary sm:text-base">
+              Sign in using your authorized Google account or admin email and
+              password.
             </p>
           </div>
-        </div>
 
-        {/* =================================================
-            LOGIN AREA
-        ================================================== */}
-        <div className="flex items-center justify-center p-6 sm:p-8 lg:p-10">
-          <div className="w-full max-w-md">
-            {/* Mobile Logo */}
-            <div className="mb-8 flex justify-center lg:hidden">
-              <Link to="/" aria-label="Sakshi Play School home">
-                <img
-                  src="/images/logo.png"
-                  alt="Sakshi Play School"
-                  className="h-20 w-auto object-contain"
-                />
-              </Link>
+          {/* =================================================
+              ERROR MESSAGE
+          ================================================== */}
+
+          {error && (
+            <div
+              role="alert"
+              className="mt-6 rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold leading-6 text-red-700"
+            >
+              {error}
             </div>
+          )}
 
-            {/* Heading */}
-            <div className="text-center lg:text-left">
-              <p className="text-sm font-bold uppercase tracking-wide text-brand-blue">
-                Administration
-              </p>
+          {/* =================================================
+              GOOGLE LOGIN
+          ================================================== */}
 
-              <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
-                Admin <span className="text-pink-600">Login</span>
-              </h2>
-
-              <p className="mt-3 text-sm leading-6 text-text-secondary sm:text-base">
-                Sign in with the authorized Google account to manage your Sakshi
-                Play School website.
-              </p>
-            </div>
-
-            {/* Google Login */}
-            <div className="mt-8">
-              <button
-                type="button"
-                onClick={handleGoogleLogin}
-                disabled={!isLoaded}
-                className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-6 text-sm font-bold text-text-primary shadow-button transition-all duration-200 hover:border-brand-blue hover:bg-gray-50 hover:shadow-button-hover disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                <FaGoogle size={18} aria-hidden="true" />
-                Continue with Google
-              </button>
-            </div>
-
-            {/* Account Note */}
-            <div className="mt-4 text-center">
-              <p className="text-xs leading-5 text-text-secondary">
-                Only authorized school administrators can access this portal.
-              </p>
-            </div>
-
-            {/* Security Note */}
-            <div className="mt-6 rounded-xl bg-sky-50 px-4 py-3">
-              <div className="flex items-start gap-3">
-                <ShieldCheck
+          <div className="mt-7">
+            <button
+              type="button"
+              onClick={handleGoogleLogin}
+              disabled={!isLoaded || googleLoading}
+              className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-6 text-sm font-bold text-text-primary shadow-button transition-all duration-200 hover:border-brand-blue hover:bg-gray-50 hover:shadow-button-hover disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {googleLoading ? (
+                <LoaderCircle
                   size={18}
-                  className="mt-0.5 shrink-0 text-brand-blue"
+                  className="animate-spin"
                   aria-hidden="true"
                 />
+              ) : (
+                <FaGoogle size={18} aria-hidden="true" />
+              )}
 
-                <p className="text-xs leading-5 text-text-secondary">
-                  Admin access is restricted to authorized school
-                  administrators.
-                </p>
+              {googleLoading ? "Connecting..." : "Continue with Google"}
+            </button>
+          </div>
+
+          {/* =================================================
+              DIVIDER
+          ================================================== */}
+
+          <div className="my-6 flex items-center gap-3">
+            <div className="h-px flex-1 bg-gray-200" />
+
+            <span className="shrink-0 text-xs font-bold uppercase tracking-wide text-gray-400">
+              Or
+            </span>
+
+            <div className="h-px flex-1 bg-gray-200" />
+          </div>
+
+          {/* =================================================
+              EMAIL + PASSWORD
+          ================================================== */}
+
+          <form onSubmit={handleEmailLogin} className="space-y-5">
+            {/* Email */}
+
+            <div>
+              <label
+                htmlFor="admin-email"
+                className="mb-1.5 block text-sm font-semibold leading-6 text-brand-navy"
+              >
+                Email Address
+              </label>
+
+              <input
+                id="admin-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                  setError("");
+                }}
+                placeholder="Enter admin email"
+                disabled={isEmailSubmitting}
+                className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-sm leading-6 text-text-primary outline-none transition-colors placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 disabled:cursor-not-allowed disabled:bg-gray-50"
+              />
+            </div>
+
+            {/* Password */}
+
+            <div>
+              <div className="mb-1.5 flex items-center justify-between gap-3">
+                <label
+                  htmlFor="admin-password"
+                  className="block text-sm font-semibold leading-6 text-brand-navy"
+                >
+                  Password
+                </label>
+              </div>
+
+              <div className="relative">
+                <input
+                  id="admin-password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={(event) => {
+                    setPassword(event.target.value);
+                    setError("");
+                  }}
+                  placeholder="Enter your password"
+                  disabled={isEmailSubmitting}
+                  className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 pr-12 text-sm leading-6 text-text-primary outline-none transition-colors placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 disabled:cursor-not-allowed disabled:bg-gray-50"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((current) => !current)}
+                  disabled={isEmailSubmitting}
+                  className="absolute right-0 top-0 flex h-12 w-12 items-center justify-center text-gray-500 transition-colors hover:text-brand-navy disabled:cursor-not-allowed"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? (
+                    <EyeOff size={18} aria-hidden="true" />
+                  ) : (
+                    <Eye size={18} aria-hidden="true" />
+                  )}
+                </button>
               </div>
             </div>
 
-            {/* Back to Website */}
-            <div className="mt-6 text-center">
-              <Link
-                to="/"
-                className="text-sm font-semibold text-brand-blue transition-colors duration-200 hover:text-brand-navy"
-              >
-                ← Back to Website
-              </Link>
+            {/* Sign In */}
+
+            <button
+              type="submit"
+              disabled={!isLoaded || !email || !password || isEmailSubmitting}
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-brand-navy px-6 text-sm font-bold text-white shadow-button transition-all duration-200 hover:bg-brand-blue hover:shadow-button-hover disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isEmailSubmitting ? (
+                <>
+                  <LoaderCircle
+                    size={18}
+                    className="animate-spin"
+                    aria-hidden="true"
+                  />
+                  Signing in...
+                </>
+              ) : (
+                "Sign in with Email"
+              )}
+            </button>
+          </form>
+
+          {/* =================================================
+              AUTHORIZATION NOTE
+          ================================================== */}
+
+          <div className="mt-5 text-center">
+            <p className="text-xs leading-5 text-text-secondary">
+              Only authorized school administrators can access this portal.
+            </p>
+          </div>
+
+          {/* =================================================
+              SECURITY NOTE
+          ================================================== */}
+
+          <div className="mt-6 rounded-xl bg-sky-50 px-4 py-3">
+            <div className="flex items-start gap-3">
+              <ShieldCheck
+                size={18}
+                className="mt-0.5 shrink-0 text-brand-blue"
+                aria-hidden="true"
+              />
+
+              <p className="text-xs leading-5 text-text-secondary">
+                Admin access is restricted to authorized school administrators.
+              </p>
             </div>
+          </div>
+
+          {/* =================================================
+              BACK TO WEBSITE
+          ================================================== */}
+
+          <div className="mt-6 text-center">
+            <Link
+              to="/"
+              className="text-sm font-semibold text-brand-blue transition-colors duration-200 hover:text-brand-navy"
+            >
+              ← Back to Website
+            </Link>
           </div>
         </div>
       </div>
