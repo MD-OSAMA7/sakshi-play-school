@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 5000;
 // Clerk authentication middleware
 app.use(
   clerkMiddleware({
-    authorizedParties: ["http://localhost:5173"],
+    authorizedParties: [process.env.FRONTEND_URL],
   }),
 );
 
