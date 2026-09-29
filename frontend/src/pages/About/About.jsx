@@ -1,11 +1,9 @@
 import {
-  BookOpen,
   Eye,
   Heart,
   Lightbulb,
   ShieldCheck,
   Sparkles,
-  SunMedium,
   Target,
   Users,
 } from "lucide-react";
@@ -58,88 +56,86 @@ function About() {
           ABOUT HERO
       ====================================================== */}
       <section className="relative overflow-hidden bg-sky-50">
+        <img
+          src="/images/about/about-hero.webp"
+          alt="Happy children learning at Sakshi Play School"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+
+        {/* Left White Overlay */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none max-w-260 absolute inset-0 bg-linear-to-r from-white via-white/99 to-transparent"
+        />
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white via-white/10 to-transparent md:h-20"
+        />
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-3 bg-linear-to-b from-white/70 to-transparent"
+        />
         <div className="container">
-          <div className="grid items-center lg:min-h-96 lg:grid-cols-2">
+          <div className="grid items-center min-h-80 lg:min-h-120 lg:grid-cols-2">
             {/* Hero Content */}
-            <div className="relative z-10 py-12 sm:py-16 lg:py-20">
+            <div className="relative z-10 max-w-xl py-12 md:py-16 lg:py-20">
               {/* Playful Heading */}
               <div className="relative mt-2 w-fit">
-                <h1 className=" text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl lg:text-6xl">
+                <h1 className="font-serif font-black uppercase leading-tight tracking-tight text-4xl text-brand-navy sm:text-5xl md:text-6xl lg:text-7xl">
                   About <span className="text-pink-600">Us</span>
                 </h1>
-                <span className=" max-w-xl font-semibold leading-6 text-base text-blue-900 sm:text-lg">
-                  <p className="pl-6 -rotate-2">Nurturing little minds</p>
 
-                  <p className="pl-9 -rotate-2">for a brighter tomorrow.</p>
-                </span>
+                <p className="mt-3 max-w-60 sm:max-w-7xl font-sans text-sm font-semibold leading-6 tracking-normal text-blue-950 md:text-[0.9375rem] lg:text-base">
+                  Nurturing little minds for a brighter tomorrow.
+                </p>
 
-                <div className="ml-12 -rotate-3  mt-2 h-1 w-24 rounded-full  sm:w-40 bg-linear-to-r from-transparent via-yellow-400 to-transparent" />
-              </div>
+                {/* Hero CTA */}
+                <div className="mt-7 flex flex-wrap justify-start gap-3">
+                  <Link
+                    to="/facilities"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-pink-600 py-2 px-3 font-sans text-sm font-bold leading-5 tracking-normal text-white transition-colors duration-200 hover:bg-pink-700 sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
+                  >
+                    Explore Facilities
+                  </Link>
 
-              {/* Tagline */}
-
-              {/* Breadcrumb */}
-              <div className="mt-6 flex items-center gap-2 text-sm font-medium">
-                <Link
-                  to="/"
-                  className="text-brand-blue transition-colors duration-200 hover:text-brand-navy"
-                >
-                  Home
-                </Link>
-
-                <span className="text-text-secondary">/</span>
-
-                <span className="text-brand-navy">About Us</span>
-              </div>
-            </div>
-
-            {/* Hero Image */}
-            <div className="relative hidden h-full min-h-80 lg:block">
-              <div className="absolute inset-0 overflow-hidden rounded-3xl">
-                <img
-                  src="/images/about/about-hero.webp"
-                  alt="Happy child at Sakshi Play School"
-                  className="h-full w-full object-cover"
-                />
-
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 bg-linear-to-r from-sky-50 via-sky-50/50 to-transparent"
-                />
-              </div>
-
-              {/* Decorative Badge */}
-              <div
-                aria-hidden="true"
-                className="absolute right-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-brand-gold shadow-card"
-              >
-                <Sparkles
-                  size={24}
-                  strokeWidth={2}
-                  className="text-brand-navy"
-                />
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-brand-navy bg-white py-2 px-3 font-sans text-sm font-bold leading-5 tracking-normal text-brand-navy transition-colors duration-200 hover:bg-brand-navy hover:text-white sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
+                  >
+                    Contact Us
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
+      {/* Bottom Accent */}
+      <div
+        aria-hidden="true"
+        className="h-1 w-full rounded-b-full bg-linear-to-r from-pink-500 via-brand-gold to-brand-blue"
+      />
       {/* =====================================================
           OUR STORY
       ====================================================== */}
-      <section className="py-12 sm:py-16 lg:py-20">
+      <section className="py-12 md:py-16 lg:py-20">
         <div className="container">
           <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-10">
             {/* Story Content */}
-            <div className="lg:col-span-5">
-              <div className="max-w-xl">
-                <h2 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl">
+            <div className="min-w-0 lg:col-span-5">
+              <div className="max-w-3xl">
+                <h2 className="mt-2 font-serif font-black leading-tight tracking-tight text-2xl text-brand-navy sm:text-[1.375rem] md:text-3xl lg:text-4xl">
                   Our <span className="text-pink-600">Story</span>
                 </h2>
 
-                <div className="mt-4 h-1 w-14 rounded-full bg-brand-gold" />
+                <div className="mt-1 h-1 w-14 rounded-full bg-brand-gold" />
 
-                <div className="mt-5 space-y-4 text-base leading-7 text-text-secondary">
+                <div className="mt-5 max-w-3xl space-y-4 font-sans text-sm leading-7 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base">
                   <p>
                     Sakshi Play School was established with a simple yet
                     powerful vision to provide a joyful, safe and nurturing
@@ -162,7 +158,7 @@ function About() {
                 {/* CTA */}
                 <Link
                   to="/contact"
-                  className="mt-7 inline-flex min-h-11 items-center justify-center rounded-lg bg-brand-gold px-6 text-sm font-bold text-brand-navy shadow-button transition-all duration-200 hover:bg-pink-600 hover:text-white hover:shadow-button-hover"
+                  className="mt-7 inline-flex items-center justify-center rounded-lg bg-brand-gold py-2 px-3 font-sans text-sm font-bold leading-5 tracking-normal text-brand-navy shadow-button transition-all duration-200 hover:bg-pink-600 hover:text-white hover:shadow-button-hover sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
                 >
                   Know More
                 </Link>
@@ -170,7 +166,7 @@ function About() {
             </div>
 
             {/* Story Image */}
-            <div className="relative lg:col-span-7">
+            <div className="relative min-w-0 lg:col-span-7">
               <div className="relative mx-auto max-w-2xl overflow-hidden rounded-3xl shadow-floating">
                 <img
                   src="/images/about/about-story.webp"
@@ -203,7 +199,7 @@ function About() {
       {/* =====================================================
           HIGHLIGHTS
       ====================================================== */}
-      <section className="bg-sky-50 py-12 sm:py-16">
+      <section className="bg-sky-50 py-12 md:py-16 lg:py-20">
         <div className="container">
           {/* Highlight Cards */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
@@ -213,7 +209,7 @@ function About() {
               return (
                 <article
                   key={item.id}
-                  className="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-floating sm:p-6"
+                  className="min-w-0 rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-floating sm:p-6"
                 >
                   {/* Icon */}
                   <div
@@ -228,12 +224,12 @@ function About() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="mt-4 text-lg font-extrabold leading-6 text-brand-navy">
+                  <h3 className="mt-4 font-serif font-black leading-snug tracking-tight text-lg text-brand-navy sm:text-xl md:text-[1.25rem] lg:text-2xl">
                     {item.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="mt-2 text-sm leading-6 text-text-secondary">
+                  <p className="mt-2 max-w-xl font-sans text-sm leading-7 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base">
                     {item.description}
                   </p>
                 </article>
@@ -246,20 +242,20 @@ function About() {
       {/* =====================================================
           MANAGING DIRECTOR
       ====================================================== */}
-      <section className="py-12 sm:py-16 lg:py-20">
+      <section className="py-12 md:py-16 lg:py-20">
         <div className="container">
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
             {/* Message */}
-            <div className="lg:col-span-8">
+            <div className="min-w-0 lg:col-span-8">
               <div className="max-w-3xl">
-                <h2 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl">
+                <h2 className="mt-2 font-serif font-black leading-tight tracking-tight text-2xl text-brand-navy sm:text-[1.375rem] md:text-3xl lg:text-4xl">
                   Message from the{" "}
                   <span className="text-pink-600">Managing Director</span>
                 </h2>
 
-                <div className="mt-4 h-1 w-14 rounded-full bg-brand-gold" />
+                <div className="mt-1 h-1 w-14 rounded-full bg-brand-gold" />
 
-                <div className="mt-5 space-y-4 text-base leading-7 text-text-secondary">
+                <div className="mt-5 max-w-3xl space-y-4 font-sans text-sm leading-7 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base">
                   <p>
                     At Sakshi Play School, we believe that every child is
                     precious and deserves a nurturing environment. Our aim is to
@@ -276,7 +272,7 @@ function About() {
                 </div>
 
                 {/* Quote */}
-                <blockquote className="mt-7 rounded-2xl border-l-4 border-pink-600 bg-pink-50 px-5 py-5 text-sm font-semibold italic leading-6 text-brand-navy sm:px-6 sm:text-base">
+                <blockquote className="mt-7 max-w-3xl rounded-2xl border-l-4 border-pink-600 bg-pink-50 px-5 py-5 font-sans text-sm font-semibold italic leading-6 tracking-normal text-brand-navy sm:px-6 md:text-[0.9375rem] lg:text-base">
                   “Let us nurture today's little steps to form tomorrow's big
                   achievements.”
                 </blockquote>
@@ -284,7 +280,7 @@ function About() {
             </div>
 
             {/* Director */}
-            <div className="lg:col-span-4">
+            <div className="min-w-0 lg:col-span-4">
               <div className="mx-auto max-w-sm text-center">
                 <div className="overflow-hidden rounded-3xl bg-blue-50 shadow-floating">
                   <img
@@ -294,15 +290,15 @@ function About() {
                   />
                 </div>
 
-                <h3 className="mt-5 text-2xl font-extrabold text-brand-blue">
+                <h3 className="mt-5 font-serif font-black leading-snug tracking-tight text-lg text-brand-blue sm:text-xl md:text-[1.25rem] lg:text-2xl">
                   Mr. S. K. Shambhu
                 </h3>
 
-                <p className="mt-1 text-sm font-bold text-brand-navy">
+                <p className="mt-1 font-sans text-xs font-bold leading-5 tracking-normal text-brand-navy md:text-[0.8125rem] lg:text-sm">
                   Managing Director
                 </p>
 
-                <p className="mt-1 text-sm text-text-secondary">
+                <p className="mt-1 font-sans text-xs leading-5 tracking-normal text-text-secondary md:text-[0.8125rem] lg:text-sm">
                   M.Sc. (Chemistry), LL.B.
                 </p>
               </div>
@@ -314,7 +310,7 @@ function About() {
       {/* =====================================================
           VISION & MISSION
       ====================================================== */}
-      <section className="bg-sky-50 py-12 sm:py-16 lg:py-20">
+      <section className="bg-sky-50 py-12 md:py-16 lg:py-20">
         <div className="container">
           <div className="grid gap-5 md:grid-cols-2 md:gap-6">
             {/* Vision */}
@@ -324,14 +320,14 @@ function About() {
                   <Eye size={25} strokeWidth={2} aria-hidden="true" />
                 </div>
 
-                <div>
-                  <h2 className="text-xl font-extrabold text-brand-navy sm:text-2xl">
+                <div className="min-w-0">
+                  <h2 className="font-serif font-black leading-tight tracking-tight text-2xl text-brand-navy sm:text-[1.375rem] md:text-3xl lg:text-4xl">
                     Our Vision
                   </h2>
 
-                  <div className="mt-2 h-1 w-10 rounded-full bg-brand-gold" />
+                  <div className="mt-1 h-1 w-10 rounded-full bg-brand-gold" />
 
-                  <p className="mt-4 text-sm leading-6 text-text-secondary sm:text-base">
+                  <p className="mt-4 max-w-xl font-sans text-sm leading-7 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base">
                     To be a trusted early learning centre where children grow
                     into confident, kind and responsible individuals.
                   </p>
@@ -346,14 +342,14 @@ function About() {
                   <Target size={25} strokeWidth={2} aria-hidden="true" />
                 </div>
 
-                <div>
-                  <h2 className="text-xl font-extrabold text-brand-navy sm:text-2xl">
+                <div className="min-w-0">
+                  <h2 className="font-serif font-black leading-tight tracking-tight text-2xl text-brand-navy sm:text-[1.375rem] md:text-3xl lg:text-4xl">
                     Our Mission
                   </h2>
 
-                  <div className="mt-2 h-1 w-10 rounded-full bg-brand-gold" />
+                  <div className="mt-1 h-1 w-10 rounded-full bg-brand-gold" />
 
-                  <p className="mt-4 text-sm leading-6 text-text-secondary sm:text-base">
+                  <p className="mt-4 max-w-xl font-sans text-sm leading-7 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base">
                     To provide a joyful, inclusive and stimulating environment
                     that encourages curiosity, creativity and character building
                     in every child.
@@ -368,19 +364,19 @@ function About() {
       {/* =====================================================
           FINAL CTA
       ====================================================== */}
-      <section className="bg-white py-12 sm:py-16">
+      <section className="bg-white py-12 md:py-16 lg:py-20">
         <div className="container">
           <div className="rounded-3xl bg-brand-navy px-6 py-10 text-center sm:px-10 lg:px-16 lg:py-12">
-            <p className="text-sm font-bold uppercase tracking-wide text-brand-gold">
+            <p className="font-sans text-xs font-bold uppercase leading-5 tracking-wide text-brand-gold md:text-[0.8125rem] lg:text-sm">
               Discover Sakshi
             </p>
 
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <h2 className="mt-2 font-serif font-black leading-tight tracking-tight text-2xl text-white sm:text-[1.375rem] md:text-3xl lg:text-4xl">
               A Place Where Children{" "}
               <span className="text-pink-400">Learn & Grow</span>
             </h2>
 
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-white/80 sm:text-base">
+            <p className="mx-auto mt-4 max-w-2xl font-sans text-sm leading-7 tracking-normal text-white/80 md:text-[0.9375rem] lg:text-base">
               Explore our school, learn more about our facilities and get in
               touch with our team.
             </p>
@@ -388,21 +384,21 @@ function About() {
             <div className="mt-7 flex flex-wrap justify-center gap-3">
               <Link
                 to="/facilities"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-pink-600 px-6 text-sm font-bold text-white transition-colors duration-200 hover:bg-pink-700"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-pink-600 py-2 px-3 font-sans text-sm font-bold leading-5 tracking-normal text-white transition-colors duration-200 hover:bg-pink-700 sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
               >
                 Explore Facilities
               </Link>
 
               <Link
                 to="/admission"
-                className="inline-flex min-h-11 items-center justify-center rounded-lg bg-white px-6 text-sm font-bold text-brand-navy transition-colors duration-200 hover:bg-brand-gold"
+                className="inline-flex items-center justify-center rounded-lg bg-white py-2 px-3 font-sans text-sm font-bold leading-5 tracking-normal text-brand-navy transition-colors duration-200 hover:bg-brand-gold sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
               >
                 Admission
               </Link>
 
               <Link
                 to="/contact"
-                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/40 px-6 text-sm font-bold text-white transition-colors duration-200 hover:bg-white hover:text-brand-navy"
+                className="inline-flex items-center justify-center rounded-lg border border-white/40 py-2 px-3 font-sans text-sm font-bold leading-5 tracking-normal text-white transition-colors duration-200 hover:bg-white hover:text-brand-navy sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
               >
                 Contact Us
               </Link>

@@ -211,80 +211,77 @@ function Contact() {
           CONTACT HERO
       ====================================================== */}
       <section className="relative overflow-hidden bg-sky-50">
-        <div className="container">
-          <div className="grid items-center lg:min-h-96 lg:grid-cols-2">
-            {/* Hero Content */}
-            <div className="relative z-10 py-12 sm:py-16 lg:py-20">
-              <p className="text-sm font-bold uppercase tracking-wide text-brand-blue sm:text-base">
-                Get In Touch
-              </p>
+        <img
+          src="/images/contact/contact-hero.webp"
+          alt="Happy children learning at Sakshi Play School"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
 
-              <h1 className="mt-2 text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl lg:text-6xl">
+        {/* Left White Overlay */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-linear-to-r from-white via-white/65 to-transparent md:via-white/45"
+        />
+
+        {/* Bottom White Overlay */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white via-white/10 to-transparent md:h-20"
+        />
+
+        {/* Top White Fade */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-linear-to-b from-white/70 to-transparent"
+        />
+
+        <div className="container">
+          <div className="grid min-h-72 items-center sm:min-h-80 lg:min-h-120 lg:grid-cols-2">
+            {/* Hero Content */}
+            <div className="relative z-10 max-w-xl py-12 text-start md:py-16 lg:py-20">
+              <h1 className="font-serif font-black uppercase leading-tight tracking-tight text-4xl text-brand-navy sm:text-5xl md:text-6xl lg:text-7xl">
                 Contact <span className="text-pink-600">Us</span>
               </h1>
 
-              <p className="mt-4 max-w-xl text-base leading-7 text-text-secondary sm:text-lg">
-                We'd love to hear from you and help you with any questions about
-                Sakshi Play School.
+              <p className="mt-4 max-w-xl font-sans text-sm font-medium leading-6 tracking-normal text-blue-950 md:text-[0.9375rem] lg:text-base">
+                We'd love to hear from you
               </p>
 
-              {/* Breadcrumb */}
-              <div className="mt-6 flex items-center gap-2 text-sm font-medium">
-                <Link
-                  to="/"
-                  className="text-brand-blue transition-colors duration-200 hover:text-brand-navy"
-                >
-                  Home
-                </Link>
-
-                <span className="text-text-secondary">/</span>
-
-                <span className="text-brand-navy">Contact Us</span>
-              </div>
-
               {/* Hero CTA */}
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-wrap justify-start gap-3">
                 <a
                   href="tel:+916475222072"
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-pink-600 px-6 text-sm font-bold text-white shadow-button transition-all duration-200 hover:bg-pink-700 hover:shadow-button-hover"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-pink-600 py-2 px-3 font-sans text-sm font-semibold leading-5 tracking-normal text-white shadow-button transition-all duration-200 hover:bg-pink-700 hover:shadow-button-hover sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
                 >
-                  <Phone size={18} aria-hidden="true" />
+                  <Phone size={16} aria-hidden="true" />
                   Call Us
                 </a>
 
                 <a
                   href="#contact-form"
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-brand-navy bg-white px-6 text-sm font-bold text-brand-navy transition-colors duration-200 hover:bg-brand-navy hover:text-white"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-brand-navy bg-white py-2 px-3 font-sans text-sm font-semibold leading-5 tracking-normal text-brand-navy transition-colors duration-200 hover:bg-brand-navy hover:text-white sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
                 >
                   Send Message
-                  <Send size={17} aria-hidden="true" />
+                  <Send size={15} aria-hidden="true" />
                 </a>
-              </div>
-            </div>
-
-            {/* Hero Image */}
-            <div className="relative hidden h-full min-h-80 lg:block">
-              <div className="absolute inset-0 overflow-hidden rounded-3xl">
-                <img
-                  src="/images/contact/contact-hero.webp"
-                  alt="Happy child at Sakshi Play School"
-                  className="h-full w-full object-cover"
-                />
-
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 bg-linear-to-r from-sky-50 via-sky-50/60 to-transparent"
-                />
               </div>
             </div>
           </div>
         </div>
       </section>
+      {/* Bottom Accent */}
+      <div
+        aria-hidden="true"
+        className="h-1 w-full rounded-b-full bg-linear-to-r from-pink-500 via-brand-gold to-brand-blue"
+      />
 
       {/* =====================================================
           CONTACT INFO
       ====================================================== */}
-      <section className="bg-white py-8 sm:py-10 lg:py-12">
+      <section className="bg-white py-12 md:py-16 lg:py-20">
         <div className="container">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
             {contactInfo.map((item) => {
@@ -293,9 +290,9 @@ function Contact() {
               return (
                 <article
                   key={item.id}
-                  className="rounded-2xl border border-gray-100 bg-white p-5 shadow-card transition-transform duration-200 hover:-translate-y-1"
+                  className="min-w-0 rounded-2xl border border-gray-100 bg-white p-4 shadow-card transition-transform duration-200 hover:-translate-y-1 sm:p-5"
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex min-w-0 items-start gap-3 sm:gap-4">
                     {/* Icon */}
                     <div
                       className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${item.iconClass}`}
@@ -305,23 +302,23 @@ function Contact() {
 
                     {/* Content */}
                     <div className="min-w-0">
-                      <h2 className="text-base font-extrabold text-brand-navy sm:text-lg">
+                      <h3 className="font-serif font-black leading-snug tracking-tight text-lg text-brand-navy sm:text-xl md:text-[1.25rem] lg:text-2xl">
                         {item.title}
-                      </h2>
+                      </h3>
 
-                      <div className="mt-2 space-y-1">
+                      <div className="mt-3 space-y-1">
                         {item.id === 1 ? (
                           <>
                             <a
                               href="tel:+916475222072"
-                              className="block text-sm leading-5 text-text-secondary transition-colors duration-200 hover:text-pink-600"
+                              className="block font-sans text-sm leading-6 tracking-normal text-text-secondary transition-colors duration-200 hover:text-pink-600 md:text-[0.9375rem] lg:text-base"
                             >
                               06475-222072
                             </a>
 
                             <a
                               href="tel:+919431247423"
-                              className="block text-sm leading-5 text-text-secondary transition-colors duration-200 hover:text-pink-600"
+                              className="block font-sans text-sm leading-6 tracking-normal text-text-secondary transition-colors duration-200 hover:text-pink-600 md:text-[0.9375rem] lg:text-base"
                             >
                               9431247423
                             </a>
@@ -329,7 +326,7 @@ function Contact() {
                         ) : item.id === 2 ? (
                           <a
                             href="mailto:sakshiplayschool@gmail.com"
-                            className="block wrap-break text-sm leading-5 text-text-secondary transition-colors duration-200 hover:text-brand-blue"
+                            className="block wrap-break-word font-sans text-sm leading-6 tracking-normal text-text-secondary transition-colors duration-200 hover:text-brand-blue md:text-[0.9375rem] lg:text-base"
                           >
                             sakshiplayschool@gmail.com
                           </a>
@@ -338,10 +335,13 @@ function Contact() {
                             href="https://www.google.com/maps/search/?api=1&query=Simri%20Bakhtiyarpur%2C%20Madhuwan%2C%20Saharsa%2C%20Bihar%20852127"
                             target="_blank"
                             rel="noreferrer"
-                            className="block text-sm leading-5 text-text-secondary transition-colors duration-200 hover:text-brand-blue"
+                            className="block font-sans text-sm leading-6 tracking-normal text-text-secondary transition-colors duration-200 hover:text-brand-blue md:text-[0.9375rem] lg:text-base"
                           >
                             {item.lines.map((line) => (
-                              <span key={line} className="block">
+                              <span
+                                key={line}
+                                className="block font-sans text-sm leading-6 tracking-normal md:text-[0.9375rem] lg:text-base"
+                              >
                                 {line}
                               </span>
                             ))}
@@ -350,7 +350,7 @@ function Contact() {
                           item.lines.map((line) => (
                             <p
                               key={line}
-                              className="text-sm leading-5 text-text-secondary"
+                              className="font-sans text-sm leading-6 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base"
                             >
                               {line}
                             </p>
@@ -369,37 +369,30 @@ function Contact() {
       {/* =====================================================
           MESSAGE + MAP
       ====================================================== */}
-      <section className="bg-white pb-12 sm:pb-16 lg:pb-20">
+      <section className="bg-white py-12 md:py-16 lg:py-20">
         <div className="container">
           <div className="grid gap-6 lg:grid-cols-12">
             {/* Message Form */}
             <div
               id="contact-form"
-              className="scroll-mt-24 rounded-3xl border border-gray-100 bg-white p-5 shadow-card sm:p-6 lg:col-span-6 lg:p-7"
+              className="min-w-0 scroll-mt-24 rounded-3xl border border-gray-100 bg-white p-5 shadow-card sm:p-6 lg:col-span-6 lg:p-7"
             >
-              <p className="text-sm font-bold uppercase tracking-wide text-brand-blue sm:text-base">
-                Have a Question?
-              </p>
-
-              <h2 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-brand-navy">
+              <h2 className="mt-2 font-serif font-black leading-tight tracking-tight text-2xl text-brand-navy sm:text-[1.375rem] md:text-3xl lg:text-4xl">
                 Send Us a <span className="text-pink-600">Message</span>
               </h2>
-
-              <div className="mt-4 h-1 w-14 rounded-full bg-brand-gold" />
-
-              <p className="mt-4 text-sm leading-6 text-text-secondary sm:text-base">
+           
+              <p className="mt-4 max-w-2xl font-sans text-sm leading-7 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base">
                 Have a question, query or would like to know more about our
                 programmes? Fill out the form below and we'll get back to you as
                 soon as possible.
               </p>
-
-              <form className="mt-6" onSubmit={handleSubmit} noValidate>
-                <div className="grid gap-4 sm:grid-cols-2">
+              <form className="mt-6 min-w-0" onSubmit={handleSubmit} noValidate>
+                <div className="grid min-w-0 gap-4 sm:grid-cols-2">
                   {/* Name */}
                   <div>
                     <label
                       htmlFor="name"
-                      className="mb-1.5 block text-sm font-semibold text-text-primary"
+                      className="mb-1.5 block font-sans text-xs font-semibold leading-5 tracking-normal text-text-primary md:text-[0.8125rem] lg:text-sm"
                     >
                       Your Name
                       <span className="text-red-500">*</span>
@@ -414,13 +407,15 @@ function Contact() {
                       placeholder="Your Name"
                       autoComplete="name"
                       maxLength={60}
-                      className={`h-11 w-full rounded-lg border bg-white px-3 text-sm text-text-primary outline-none transition-shadow placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 ${
+                      className={`h-11 w-full rounded-lg border bg-white px-3 font-sans text-sm leading-6 tracking-normal text-text-primary outline-none transition-shadow placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 md:text-[0.9375rem] lg:text-base ${
                         errors.name ? "border-error" : "border-gray-300"
                       }`}
                     />
 
                     {errors.name && (
-                      <p className="mt-1 text-xs text-error">{errors.name}</p>
+                      <p className="mt-1 block font-sans text-xs leading-5 tracking-normal text-error md:text-[0.8125rem] lg:text-sm">
+                        {errors.name}
+                      </p>
                     )}
                   </div>
 
@@ -428,7 +423,7 @@ function Contact() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="mb-1.5 block text-sm font-semibold text-text-primary"
+                      className="mb-1.5 block font-sans text-xs font-semibold leading-5 tracking-normal text-text-primary md:text-[0.8125rem] lg:text-sm"
                     >
                       Email Address
                       <span className="text-red-500">*</span>
@@ -443,13 +438,15 @@ function Contact() {
                       placeholder="Email Address"
                       autoComplete="email"
                       maxLength={120}
-                      className={`h-11 w-full rounded-lg border bg-white px-3 text-sm text-text-primary outline-none transition-shadow placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 ${
+                      className={`h-11 w-full rounded-lg border bg-white px-3 font-sans text-sm leading-6 tracking-normal text-text-primary outline-none transition-shadow placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 md:text-[0.9375rem] lg:text-base ${
                         errors.email ? "border-error" : "border-gray-300"
                       }`}
                     />
 
                     {errors.email && (
-                      <p className="mt-1 text-xs text-error">{errors.email}</p>
+                      <p className="mt-1 block font-sans text-xs leading-5 tracking-normal text-error md:text-[0.8125rem] lg:text-sm">
+                        {errors.email}
+                      </p>
                     )}
                   </div>
 
@@ -457,7 +454,7 @@ function Contact() {
                   <div>
                     <label
                       htmlFor="phone"
-                      className="mb-1.5 block text-sm font-semibold text-text-primary"
+                      className="mb-1.5 block font-sans text-xs font-semibold leading-5 tracking-normal text-text-primary md:text-[0.8125rem] lg:text-sm"
                     >
                       Phone Number
                       <span className="text-red-500">*</span>
@@ -473,13 +470,15 @@ function Contact() {
                       autoComplete="tel"
                       inputMode="numeric"
                       maxLength={10}
-                      className={`h-11 w-full rounded-lg border bg-white px-3 text-sm text-text-primary outline-none transition-shadow placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 ${
+                      className={`h-11 w-full rounded-lg border bg-white px-3 font-sans text-sm leading-6 tracking-normal text-text-primary outline-none transition-shadow placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 md:text-[0.9375rem] lg:text-base ${
                         errors.phone ? "border-error" : "border-gray-300"
                       }`}
                     />
 
                     {errors.phone && (
-                      <p className="mt-1 text-xs text-error">{errors.phone}</p>
+                      <p className="mt-1 block font-sans text-xs leading-5 tracking-normal text-error md:text-[0.8125rem] lg:text-sm">
+                        {errors.phone}
+                      </p>
                     )}
                   </div>
 
@@ -487,7 +486,7 @@ function Contact() {
                   <div>
                     <label
                       htmlFor="subject"
-                      className="mb-1.5 block text-sm font-semibold text-text-primary"
+                      className="mb-1.5 block font-sans text-xs font-semibold leading-5 tracking-normal text-text-primary md:text-[0.8125rem] lg:text-sm"
                     >
                       Subject
                       <span className="text-red-500">*</span>
@@ -501,13 +500,13 @@ function Contact() {
                       onChange={handleInputChange}
                       placeholder="Subject"
                       maxLength={100}
-                      className={`h-11 w-full rounded-lg border bg-white px-3 text-sm text-text-primary outline-none transition-shadow placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 ${
+                      className={`h-11 w-full rounded-lg border bg-white px-3 font-sans text-sm leading-6 tracking-normal text-text-primary outline-none transition-shadow placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 md:text-[0.9375rem] lg:text-base ${
                         errors.subject ? "border-error" : "border-gray-300"
                       }`}
                     />
 
                     {errors.subject && (
-                      <p className="mt-1 text-xs text-error">
+                      <p className="mt-1 block font-sans text-xs leading-5 tracking-normal text-error md:text-[0.8125rem] lg:text-sm">
                         {errors.subject}
                       </p>
                     )}
@@ -518,7 +517,7 @@ function Contact() {
                 <div className="mt-4">
                   <label
                     htmlFor="message"
-                    className="mb-1.5 block text-sm font-semibold text-text-primary"
+                    className="mb-1.5 block font-sans text-xs font-semibold leading-5 tracking-normal text-text-primary md:text-[0.8125rem] lg:text-sm"
                   >
                     Your Message
                     <span className="text-red-500">*</span>
@@ -532,19 +531,21 @@ function Contact() {
                     rows="5"
                     maxLength={1000}
                     placeholder="Your Message"
-                    className={`w-full resize-none rounded-lg border bg-white px-3 py-3 text-sm text-text-primary outline-none transition-shadow placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 ${
+                    className={`min-h-40 w-full resize-none rounded-lg border bg-white px-3 py-3 font-sans text-sm leading-6 tracking-normal text-text-primary outline-none transition-shadow placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 md:text-[0.9375rem] lg:text-base ${
                       errors.message ? "border-error" : "border-gray-300"
                     }`}
                   />
 
-                  <div className="mt-1 flex items-center justify-between gap-3">
+                  <div className="mt-2 flex items-center justify-between gap-3">
                     <div>
                       {errors.message && (
-                        <p className="text-xs text-error">{errors.message}</p>
+                        <p className="font-sans text-xs leading-5 tracking-normal text-error md:text-[0.8125rem] lg:text-sm">
+                          {errors.message}
+                        </p>
                       )}
                     </div>
 
-                    <p className="text-xs text-text-secondary">
+                    <p className="font-sans text-xs leading-5 tracking-normal text-text-secondary md:text-[0.8125rem] lg:text-sm">
                       {formData.message.length}/1000
                     </p>
                   </div>
@@ -554,7 +555,7 @@ function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-brand-navy px-6 text-sm font-bold text-white shadow-button transition-all duration-200 hover:bg-brand-blue hover:shadow-button-hover disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-navy px-3 py-2 font-sans text-sm font-bold leading-5 tracking-normal text-white shadow-button transition-all duration-200 hover:bg-brand-blue hover:shadow-button-hover disabled:pointer-events-none disabled:opacity-60 sm:w-auto sm:px-5 sm:py-3 md:text-[0.9375rem] lg:text-base"
                 >
                   <Send size={17} strokeWidth={2.2} aria-hidden="true" />
 
@@ -564,21 +565,15 @@ function Contact() {
             </div>
 
             {/* Right Content */}
-            <div className="grid gap-6 lg:col-span-6">
-              
-
+            <div className="grid min-w-0 gap-6 lg:col-span-6">
               {/* Our School */}
-              <div className="grid items-center gap-5 rounded-3xl bg-sky-50 p-5 sm:grid-cols-2 sm:p-6">
+              <div className="grid min-w-0 items-center gap-6 rounded-3xl bg-sky-50 p-5 sm:grid-cols-2 sm:p-6">
                 <div>
-                  <p className="text-sm font-bold uppercase tracking-wide text-brand-blue">
-                    Visit Us
-                  </p>
-
-                  <h2 className="mt-1 text-2xl font-extrabold text-brand-navy sm:text-3xl">
+                  <h2 className="mt-2 font-serif font-black leading-tight tracking-tight text-2xl text-brand-navy sm:text-[1.375rem] md:text-3xl lg:text-4xl">
                     Our <span className="text-pink-600">School</span>
                   </h2>
 
-                  <p className="mt-3 text-sm leading-6 text-text-secondary">
+                  <p className="mt-4 max-w-xl font-sans text-sm leading-7 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base">
                     Come and visit us to experience our vibrant and caring
                     learning environment. We'd love to welcome you to Sakshi
                     Play School.
@@ -588,7 +583,7 @@ function Contact() {
                     href="https://www.google.com/maps/search/?api=1&query=Simri%20Bakhtiyarpur%2C%20Madhuwan%2C%20Saharsa%2C%20Bihar%20852127"
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-5 inline-flex min-h-10 items-center justify-center rounded-lg bg-brand-navy px-5 text-xs font-bold text-white transition-colors duration-200 hover:bg-brand-blue"
+                    className="mt-6 inline-flex items-center justify-center rounded-lg bg-brand-navy px-3 py-2 font-sans text-sm font-bold leading-5 tracking-normal text-white transition-colors duration-200 hover:bg-brand-blue sm:px-5 sm:py-3 md:text-[0.9375rem] lg:text-base"
                   >
                     Get Directions
                   </a>
@@ -598,7 +593,7 @@ function Contact() {
                   <img
                     src="/images/contact/school.webp"
                     alt="Sakshi Play School campus"
-                    className="h-48 w-full object-cover sm:h-44"
+                    className="h-52 w-full object-cover sm:h-56 lg:h-64"
                   />
                 </div>
               </div>
@@ -606,7 +601,7 @@ function Contact() {
               {/* Map */}
               <div
                 id="school-map"
-                className="scroll-mt-24 overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-card"
+                className="min-w-0 scroll-mt-24 overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-card"
               >
                 <div className="aspect-video w-full">
                   <iframe
@@ -618,13 +613,13 @@ function Contact() {
                   />
                 </div>
 
-                <div className="flex items-center justify-between gap-3 p-4 sm:p-5">
+                <div className="flex flex-col items-start justify-between gap-3 p-4 sm:flex-row sm:items-center sm:p-5">
                   <div>
-                    <p className="text-sm font-bold text-brand-navy">
+                    <h3 className="font-serif font-black leading-snug tracking-tight text-lg text-brand-navy sm:text-xl md:text-[1.25rem] lg:text-2xl">
                       Find Our School
-                    </p>
+                    </h3>
 
-                    <p className="mt-1 text-xs leading-5 text-text-secondary">
+                    <p className="mt-1 max-w-xl font-sans text-xs leading-5 tracking-normal text-text-secondary md:text-[0.8125rem] lg:text-sm">
                       Simri, Bakhtiyarpur, Madhuwan, Saharsa
                     </p>
                   </div>
@@ -633,7 +628,7 @@ function Contact() {
                     href="https://www.google.com/maps/search/?api=1&query=Simri%20Bakhtiyarpur%2C%20Madhuwan%2C%20Saharsa%2C%20Bihar%20852127"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-lg bg-brand-blue px-4 text-xs font-bold text-white transition-colors duration-200 hover:bg-brand-navy"
+                    className="inline-flex shrink-0 items-center justify-center rounded-lg bg-brand-blue px-3 py-2 font-sans text-sm font-bold leading-5 tracking-normal text-white transition-colors duration-200 hover:bg-brand-navy sm:px-5 sm:py-3 md:text-[0.9375rem] lg:text-base"
                   >
                     Open Maps
                   </a>
@@ -647,14 +642,14 @@ function Contact() {
       {/* =====================================================
           QUICK ACTIONS
       ====================================================== */}
-      <section className="relative overflow-hidden bg-sky-50 py-10 sm:py-12">
+      <section className="relative overflow-hidden bg-sky-50 py-12 md:py-16 lg:py-20">
         <div className="container">
-          <div className="mx-auto mb-7 max-w-2xl text-center">
-            <p className="text-sm font-bold uppercase tracking-wide text-brand-blue">
+          <div className="mx-auto mb-8 max-w-2xl text-center">
+            <p className="font-sans text-xs font-bold uppercase leading-5 tracking-wide text-brand-blue md:text-[0.8125rem] lg:text-sm">
               Need Help?
             </p>
 
-            <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">
+            <h2 className="mt-2 font-serif font-black leading-tight tracking-tight text-2xl text-brand-navy sm:text-[1.375rem] md:text-3xl lg:text-4xl">
               We're Here to <span className="text-pink-600">Help</span>
             </h2>
           </div>
@@ -672,11 +667,11 @@ function Contact() {
                   </div>
 
                   <div className="min-w-0">
-                    <h2 className="text-sm font-extrabold leading-5 text-brand-navy sm:text-base">
+                    <h3 className="font-serif font-black leading-snug tracking-tight text-lg text-brand-navy sm:text-xl md:text-[1.25rem] lg:text-2xl">
                       {item.title}
-                    </h2>
+                    </h3>
 
-                    <p className="text-xs leading-5 text-text-secondary">
+                    <p className="font-sans text-xs leading-5 tracking-normal text-text-secondary md:text-[0.8125rem] lg:text-sm">
                       {item.subtitle}
                     </p>
                   </div>
@@ -688,7 +683,7 @@ function Contact() {
                   <Link
                     key={item.id}
                     to={item.href}
-                    className="group flex min-h-20 items-center gap-3 rounded-2xl bg-white px-4 py-4 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-floating"
+                    className="group flex min-h-20 min-w-0 items-center gap-3 rounded-2xl bg-white px-4 py-4 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-floating sm:px-5"
                   >
                     {content}
                   </Link>
@@ -699,7 +694,7 @@ function Contact() {
                 <a
                   key={item.id}
                   href={item.href}
-                  className="group flex min-h-20 items-center gap-3 rounded-2xl bg-white px-4 py-4 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-floating"
+                  className="group flex min-h-20 min-w-0 items-center gap-3 rounded-2xl bg-white px-4 py-4 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-floating sm:px-5"
                 >
                   {content}
                 </a>
@@ -710,18 +705,18 @@ function Contact() {
       </section>
 
       {/* Bottom Contact CTA */}
-      <section className="bg-white py-12 sm:py-16">
+      <section className="bg-white py-12 md:py-16 lg:py-20">
         <div className="container">
           <div className="rounded-3xl bg-brand-navy px-6 py-10 text-center sm:px-10 lg:px-16 lg:py-12">
-            <p className="text-sm font-bold uppercase tracking-wide text-brand-gold">
+            <p className="font-sans text-xs font-bold uppercase leading-5 tracking-wide text-brand-gold md:text-[0.8125rem] lg:text-sm">
               Let's Connect
             </p>
 
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <h2 className="mt-2 font-serif font-black leading-tight tracking-tight text-2xl text-white sm:text-[1.375rem] md:text-3xl lg:text-4xl">
               Have More <span className="text-pink-400">Questions?</span>
             </h2>
 
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-white/80 sm:text-base">
+            <p className="mx-auto mt-4 max-w-2xl font-sans text-sm leading-7 tracking-normal text-white/80 md:text-[0.9375rem] lg:text-base">
               Our team is ready to help you with admissions, school visits and
               any other queries.
             </p>
@@ -729,23 +724,23 @@ function Contact() {
             <div className="mt-7 flex flex-wrap justify-center gap-3">
               <a
                 href="tel:+916475222072"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-pink-600 px-6 text-sm font-bold text-white transition-colors duration-200 hover:bg-pink-700"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-pink-600 px-3 py-2 font-sans text-sm font-bold leading-5 tracking-normal text-white transition-colors duration-200 hover:bg-pink-700 sm:px-5 sm:py-3 md:text-[0.9375rem] lg:text-base"
               >
-                <Phone size={18} aria-hidden="true" />
+                <Phone size={16} aria-hidden="true" />
                 Call Us
               </a>
 
               <a
                 href="mailto:sakshiplayschool@gmail.com"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-bold text-brand-navy transition-colors duration-200 hover:bg-brand-gold"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-3 py-2 font-sans text-sm font-bold leading-5 tracking-normal text-brand-navy transition-colors duration-200 hover:bg-brand-gold sm:px-5 sm:py-3 md:text-[0.9375rem] lg:text-base"
               >
-                <Mail size={18} aria-hidden="true" />
+                <Mail size={16} aria-hidden="true" />
                 Email Us
               </a>
 
               <Link
                 to="/admission"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/40 px-6 text-sm font-bold text-white transition-colors duration-200 hover:bg-white hover:text-brand-navy"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/40 px-3 py-2 font-sans text-sm font-bold leading-5 tracking-normal text-white transition-colors duration-200 hover:bg-white hover:text-brand-navy sm:px-5 sm:py-3 md:text-[0.9375rem] lg:text-base"
               >
                 Admission
               </Link>
@@ -758,7 +753,7 @@ function Contact() {
       <section className="border-t border-gray-100 bg-white py-5">
         <div className="container">
           <div className="flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:gap-4">
-            <div className="flex items-center gap-2 text-sm font-semibold text-brand-navy">
+            <div className="flex items-center gap-2 font-sans text-sm font-semibold leading-6 tracking-normal text-brand-navy md:text-[0.9375rem] lg:text-base">
               <CheckCircle2
                 size={18}
                 className="text-green-600"
@@ -769,7 +764,7 @@ function Contact() {
 
             <span className="hidden text-gray-300 sm:block">|</span>
 
-            <div className="flex items-center gap-2 text-sm text-text-secondary">
+            <div className="flex items-center gap-2 font-sans text-sm leading-6 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base">
               <Clock3 size={18} aria-hidden="true" />
               9:00 AM - 2:00 PM
             </div>

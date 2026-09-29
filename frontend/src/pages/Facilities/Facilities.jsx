@@ -116,108 +116,88 @@ function Facilities() {
           HERO
       ====================================================== */}
       <section className="relative overflow-hidden bg-sky-50">
-        {/* Decorative Top Elements */}
+        <img
+          src="/images/facilities/facilities-hero.webp"
+          alt="Happy children learning at Sakshi Play School"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+
+        {/* Left White Overlay */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -left-8 top-8 h-20 w-20 rounded-full bg-brand-gold/30 blur-2xl"
+          className="pointer-events-none max-w-260 absolute inset-0 bg-linear-to-r from-white via-white/99 to-transparent"
         />
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute right-10 top-4 h-16 w-16 rounded-full bg-pink-200/50 blur-2xl"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white via-white/10 to-transparent md:h-20"
+        />
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-3 bg-linear-to-b from-white/70 to-transparent"
         />
 
         <div className="container">
-          <div className="grid items-center gap-6 lg:grid-cols-12">
+          <div className="grid min-h-72 items-center sm:min-h-80 lg:min-h-120 lg:grid-cols-2">
             {/* Hero Content */}
-            <div className="relative z-10 py-10 sm:py-14 lg:col-span-6 lg:py-16">
-              {/* Heading */}
-              <div className="relative mt-2 w-fit">
-                <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl lg:text-6xl">
-                  <span className="">Our </span>
+            <div className="relative z-10 max-w-xl py-12 text-start md:py-16 lg:py-20">
+              
+              <h1 className="font-serif font-black uppercase leading-tight tracking-tight text-4xl text-brand-navy sm:text-5xl md:text-6xl lg:text-7xl">
+                <span>Our </span>
 
-                  <span className=" text-pink-600">
-                    Facilities
-                  </span>
-                </h1>
-              </div>
+                <span className="text-pink-600 block">Facilities</span>
+              </h1>
 
               {/* Subtitle */}
-              <p className="mt-5 max-w-xl text-base font-medium leading-7 text-text-secondary sm:text-lg">
+              <p className="mt-5 max-w-75 sm:max-w-90 font-sans text-sm leading-7 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base">
                 A safe, modern and nurturing environment created for every child
                 to learn, play and grow.
               </p>
 
-              {/* Breadcrumb */}
-              <div className="mt-5 flex items-center gap-2 text-xs font-medium sm:text-sm">
+              {/* Hero CTA */}
+              <div className="mt-7 flex flex-wrap justify-start gap-3">
                 <Link
-                  to="/"
-                  className="text-brand-blue transition-colors duration-200 hover:text-brand-navy"
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-pink-600 py-2 px-3 font-sans text-sm font-semibold leading-5 tracking-normal text-white shadow-button transition-all duration-200 hover:bg-pink-700 hover:shadow-button-hover sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
                 >
-                  Home
+                  <Phone size={16} aria-hidden="true" />
+                  Schedule a Visit
                 </Link>
 
-                <span className="text-text-secondary">/</span>
-
-                <span className="text-brand-navy">Facilities</span>
-              </div>
-            </div>
-
-            {/* Hero Visual */}
-            <div className="relative min-h-72 sm:min-h-80 lg:col-span-6 lg:min-h-96">
-              {/* Main Image */}
-              <div className="absolute inset-0 overflow-hidden rounded-3xl">
-                <img
-                  src="/images/facilities/facilities-hero.webp"
-                  alt="Children enjoying facilities at Sakshi Play School"
-                  className="h-full w-full object-cover"
-                />
-
-                {/* Soft left fade */}
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-linear-to-r from-sky-50 via-sky-50/20 to-transparent"
-                />
-              </div>
-
-              {/* Top Right Badge */}
-              <div className="absolute right-3 top-3 z-10 w-24 rotate-3 rounded-full bg-white px-3 py-3 text-center shadow-floating sm:right-5 sm:top-5 sm:w-28">
-                <p className="text-xs font-extrabold leading-4 text-brand-navy">
-                  Play
-                  <br />
-                  Learn
-                  <br />
-                  Grow
-                </p>
-
-                <p className="mt-1 text-[10px] font-bold text-pink-600">
-                  Together
-                </p>
+                <Link
+                  to="/admission"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-brand-navy bg-white py-2 px-3 font-sans text-sm font-semibold leading-5 tracking-normal text-brand-navy transition-colors duration-200 hover:bg-brand-navy hover:text-white sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
+                >
+                  Start Admission
+                </Link>
               </div>
             </div>
           </div>
         </div>
-
-       
       </section>
+      {/* Bottom Accent */}
+      <div
+        aria-hidden="true"
+        className="h-1 w-full rounded-b-full bg-linear-to-r from-pink-500 via-brand-gold to-brand-blue"
+      />
 
       {/* =====================================================
           WORLD CLASS FACILITIES
       ====================================================== */}
-      <section className="bg-white py-10 sm:py-14 lg:py-16">
+      <section className="bg-white py-12 md:py-16 lg:py-20">
         <div className="container">
           {/* Heading */}
-          <div className="mx-auto max-w-4xl text-center">
-           
-
-            <h2 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="mt-2 font-serif font-black leading-tight tracking-tight text-2xl text-brand-navy sm:text-[1.375rem] md:text-3xl lg:text-4xl">
               World-Class Facilities for{" "}
               <span className="text-pink-600">Little Learners</span>
             </h2>
 
-            
-
-            <p className="mx-auto mt-5 max-w-3xl text-sm leading-6 text-text-secondary sm:text-base sm:leading-7">
+            <p className="mx-auto mt-5 max-w-3xl font-sans text-sm leading-7 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base">
               At Sakshi Play School, we provide a safe, modern and
               child-friendly environment with thoughtfully planned facilities
               that support learning, creativity, comfort and joyful everyday
@@ -251,7 +231,7 @@ function Facilities() {
                     />
 
                     {/* Card Number */}
-                    <span className="absolute right-3 top-3 rounded-full bg-white px-2.5 py-1 text-xs font-extrabold text-brand-navy shadow-card">
+                    <span className="absolute right-3 top-3 rounded-full bg-white px-2.5 py-1 font-sans text-xs font-bold leading-5 tracking-normal text-brand-navy shadow-card md:text-[0.8125rem] lg:text-sm">
                       {String(facility.id).padStart(2, "0")}
                     </span>
 
@@ -265,18 +245,14 @@ function Facilities() {
 
                   {/* Content */}
                   <div className="p-5 sm:p-6">
-                    <h3 className="text-lg font-extrabold leading-6 text-brand-navy">
+                    <h3 className="font-serif font-black leading-snug tracking-tight text-lg text-brand-navy sm:text-xl md:text-[1.25rem] lg:text-2xl">
                       {facility.title}
                     </h3>
 
-                    <p className="mt-2 text-sm leading-6 text-text-secondary">
+                    <p className="mt-2 max-w-xl font-sans text-sm leading-7 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base">
                       {facility.description}
                     </p>
-
-                    
                   </div>
-
-                
                 </article>
               );
             })}
@@ -284,14 +260,12 @@ function Facilities() {
         </div>
       </section>
 
-      
-
       {/* =====================================================
           EXPERIENCE CTA
       ====================================================== */}
-      <section className="relative overflow-hidden bg-white py-6 sm:mb-8 lg:mb-10">
+      <section className="relative overflow-hidden bg-white py-12 md:py-16 lg:py-20">
         <div className="container">
-          <div className="relative overflow-hidden rounded-3xl bg-pink-600 px-6 py-10 text-center ">
+          <div className="relative overflow-hidden rounded-3xl bg-pink-200 px-5 py-10 text-center sm:px-8 sm:py-12 lg:px-16">
             {/* Decorative Circle */}
             <div
               aria-hidden="true"
@@ -307,9 +281,7 @@ function Facilities() {
             <div
               aria-hidden="true"
               className="absolute bottom-0 left-3 hidden sm:block"
-            >
-             
-            </div>
+            ></div>
 
             {/* Right Decorative Element */}
             <div
@@ -324,13 +296,11 @@ function Facilities() {
             </div>
 
             <div className="relative z-10">
-              
-
-              <h2 className="mt-2 text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
-                Our <span className="text-brand-gold">Facilities</span>
+              <h2 className="mt-2 font-serif font-black leading-tight tracking-tight text-2xl text-brand-navy sm:text-[1.375rem] md:text-3xl lg:text-4xl">
+                Our <span className="text-pink-600">Facilities</span>
               </h2>
 
-              <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-white/90 sm:text-base">
+              <p className="mx-auto mt-4 max-w-2xl font-sans text-sm leading-7 tracking-normal text-text-secondary md:text-[0.9375rem] lg:text-base">
                 Visit Sakshi Play School and experience a safe, caring and
                 joyful environment created for little learners.
               </p>
@@ -339,7 +309,7 @@ function Facilities() {
               <div className="mt-7 flex flex-wrap justify-center gap-3">
                 <Link
                   to="/contact"
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-bold text-pink-600 shadow-button transition-all duration-200 hover:bg-brand-gold hover:text-brand-navy hover:shadow-button-hover"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-pink-600 py-2 px-3 font-sans text-sm font-bold leading-5 tracking-normal text-white shadow-button transition-all duration-200 hover:bg-pink-700 hover:shadow-button-hover sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
                 >
                   <Phone size={17} aria-hidden="true" />
                   Schedule a Visit
@@ -347,7 +317,7 @@ function Facilities() {
 
                 <Link
                   to="/admission"
-                  className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/50 px-6 text-sm font-bold text-white transition-colors duration-200 hover:bg-white hover:text-pink-600"
+                  className="inline-flex items-center justify-center rounded-lg border border-text-secondary py-2 px-3 font-sans text-sm font-bold leading-5 tracking-normal text-text-secondary transition-colors duration-200 hover:bg-white hover:text-pink-600 sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
                 >
                   Start Admission
                 </Link>

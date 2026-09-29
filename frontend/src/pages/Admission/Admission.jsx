@@ -103,135 +103,76 @@ function Admission() {
           HERO
       ====================================================== */}
       <section className="relative overflow-hidden bg-sky-50">
-        {/* Decorative Background */}
+        <img
+          src="/images/admission/admission-hero.webp"
+          alt="Happy children learning at Sakshi Play School"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+
+        {/* Left White Overlay */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -left-10 top-10 h-24 w-24 rounded-full bg-brand-gold/20 blur-2xl"
+          className="pointer-events-none max-w-260 absolute inset-0 bg-linear-to-r from-white via-white/99 to-transparent"
         />
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute right-10 top-4 h-20 w-20 rounded-full bg-pink-200/40 blur-2xl"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white via-white/10 to-transparent md:h-20"
+        />
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-3 bg-linear-to-b from-white/70 to-transparent"
         />
 
         <div className="container">
-          <div className="grid items-center lg:min-h-96 lg:grid-cols-12">
+          <div className="grid min-h-72 items-center sm:min-h-80 lg:min-h-120 lg:grid-cols-2">
             {/* Hero Content */}
-            <div className="relative z-10 py-10 sm:py-14 lg:col-span-7 lg:py-16">
-              {/* Label */}
-              <div className="flex items-center gap-2">
-                <Megaphone
-                  size={19}
-                  className="text-pink-600"
-                  aria-hidden="true"
-                />
+            <div className="relative z-10 max-w-xl py-12 text-start md:py-16 lg:py-20">
+              <h1 className="font-serif font-black uppercase leading-tight tracking-tight text-4xl text-brand-navy sm:text-5xl md:text-6xl lg:text-7xl">
+                <span className="inline-block">Admission</span>
 
-                <p className="text-sm font-bold uppercase tracking-wide text-brand-blue sm:text-base">
-                  Admissions
-                </p>
-              </div>
+                <span className="inline-block text-pink-600">s</span>
+              </h1>
 
-              {/* Main Heading */}
-              <div className="relative mt-2 w-fit">
-                <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl lg:text-6xl">
-                  <span className="-rotate-1 inline-block">Admission</span>
-
-                  <span className="rotate-1 inline-block text-pink-600">s</span>
-                </h1>
-
-                <div className="mt-1 flex items-center gap-2">
-                  <span className="text-2xl font-extrabold text-brand-navy sm:text-3xl lg:text-4xl">
-                    Open for
-                  </span>
-
-                  <span className="text-2xl font-extrabold text-pink-600 sm:text-3xl lg:text-4xl">
-                    2026-27
-                  </span>
-
-                  <SunMedium
-                    size={30}
-                    strokeWidth={2.1}
-                    className="ml-1 rotate-12 text-brand-gold sm:h-9 sm:w-9"
-                    aria-hidden="true"
-                  />
-                </div>
-
-                {/* Underline */}
-                <div className="mt-2 flex items-center">
-                  <div className="-rotate-1 h-1 w-28 rounded-full bg-brand-gold sm:w-36" />
-
-                  <Sparkles
-                    size={19}
-                    className="ml-2 text-brand-gold"
-                    aria-hidden="true"
-                  />
-                </div>
-              </div>
+              <h2 className="mt-1 flex flex-wrap items-baseline gap-x-2 gap-y-1 font-serif font-black leading-tight tracking-tight text-2xl text-brand-navy sm:text-[1.375rem] md:text-3xl lg:text-4xl">
+                <span>Open for</span>
+                <span className="text-pink-600">2026-27</span>
+              </h2>
 
               {/* Subtitle */}
-              <p className="mt-5 max-w-xl text-base font-medium leading-7 text-text-secondary sm:text-lg">
+              <p className="mt-4 max-w-xl font-sans leading-7 tracking-normal text-sm text-text-secondary md:text-[0.9375rem] lg:text-base">
                 Give your child the best start for a brighter tomorrow.
               </p>
-
-              {/* Breadcrumb */}
-              <div className="mt-5 flex items-center gap-2 text-sm font-medium">
+              <div className="mt-6 flex flex-wrap justify-start gap-3">
                 <Link
-                  to="/"
-                  className="text-brand-blue transition-colors duration-200 hover:text-brand-navy"
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-pink-600 py-2 px-3 font-sans leading-5 tracking-normal text-sm font-bold text-white shadow-button transition-all duration-200 hover:bg-pink-700 hover:shadow-button-hover sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
                 >
-                  Home
+                  Get in Touch
+                  <ArrowRight size={17} aria-hidden="true" />
                 </Link>
 
-                <span className="text-text-secondary">/</span>
-
-                <span className="text-brand-navy">Admission</span>
-              </div>
-            </div>
-
-            {/* Hero Image */}
-            <div className="relative hidden min-h-80 lg:col-span-5 lg:block">
-              <div className="absolute inset-0 overflow-hidden rounded-3xl shadow-floating">
-                <img
-                  src="/images/admission/admission-hero.webp"
-                  alt="Child at Sakshi Play School"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  className="h-full w-full object-cover"
-                />
-
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-linear-to-r from-sky-50 via-sky-50/20 to-transparent"
-                />
-              </div>
-
-              {/* Play Learn Grow Badge */}
-              <div className="absolute right-4 top-4 w-24 rotate-3 rounded-full bg-white px-3 py-3 text-center shadow-floating sm:right-6 sm:top-6 sm:w-28">
-                <p className="text-xs font-extrabold leading-4 text-brand-navy">
-                  Play
-                  <br />
-                  Learn
-                  <br />
-                  Grow
-                </p>
-
-                <div className="mx-auto mt-1 h-1 w-8 rounded-full bg-brand-gold" />
-
-                <p className="mt-1 text-[10px] font-bold text-pink-600">
-                  Together
-                </p>
+                <a
+                  href="tel:+916475222072"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-brand-navy bg-white py-2 px-3 font-sans leading-5 tracking-normal text-sm font-bold text-brand-navy transition-colors duration-200 hover:bg-brand-navy hover:text-white sm:py-3 sm:px-5 md:text-[0.9375rem] lg:text-base"
+                >
+                  <Phone size={17} aria-hidden="true" />
+                  Call Us
+                </a>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Accent */}
-        <div
-          aria-hidden="true"
-          className="h-2 w-full bg-linear-to-r from-brand-blue via-brand-gold to-pink-600"
-        />
       </section>
+      {/* Bottom Accent */}
+      <div
+        aria-hidden="true"
+        className="h-1 w-full rounded-b-full bg-linear-to-r from-pink-500 via-brand-gold to-brand-blue"
+      />
 
       {/* =====================================================
           WHY CHOOSE SAKSHI
@@ -239,25 +180,11 @@ function Admission() {
       <section className="bg-white py-10 sm:py-14 lg:py-16">
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-bold uppercase tracking-wide text-brand-blue sm:text-base">
-              Why Choose Us
-            </p>
-
             <h2 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
               Why Choose <span className="text-pink-600">Sakshi</span>{" "}
               <span className="text-brand-gold">Play</span>{" "}
               <span className="text-green-600">School</span> ?
             </h2>
-
-            <div className="mx-auto mt-4 flex items-center justify-center gap-2">
-              <div className="h-1 w-20 rounded-full bg-brand-gold sm:w-28" />
-
-              <Star
-                size={17}
-                className="fill-brand-gold text-brand-gold"
-                aria-hidden="true"
-              />
-            </div>
 
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-text-secondary sm:text-base">
               A safe, modern and nurturing environment where children learn
@@ -303,15 +230,11 @@ function Admission() {
           <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-10">
             {/* Process */}
             <div className="lg:col-span-8">
-              <p className="text-sm font-bold uppercase tracking-wide text-brand-blue sm:text-base">
-                Simple & Transparent
-              </p>
-
               <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
                 Admission <span className="text-pink-600">Process</span>
               </h2>
 
-              <div className="mt-4 h-1 w-14 rounded-full bg-brand-gold" />
+              <div className="mt-1 h-1 w-14 rounded-full bg-brand-gold" />
 
               <p className="mt-4 max-w-2xl text-sm leading-6 text-text-secondary sm:text-base">
                 A simple and transparent process to make admission easy for you.
@@ -349,8 +272,8 @@ function Admission() {
                       {/* Desktop Connector */}
                       {step.id !== admissionSteps.length && (
                         <ArrowRight
-                          size={17}
-                          className="absolute -right-3 top-8 z-10 hidden text-brand-blue xl:block"
+                          size={16}
+                          className="absolute -right-4 top-8 z-10 hidden text-brand-blue xl:block"
                           aria-hidden="true"
                         />
                       )}
@@ -413,7 +336,8 @@ function Admission() {
                 {/* All Text + Button */}
                 <div className="relative z-10">
                   <h2 className="text-3xl font-extrabold leading-tight text-brand-navy sm:text-3xl">
-                    Admissions Open for <span className="sm:hidden text-pink-600">2026-27</span>
+                    Admissions Open for{" "}
+                    <span className="sm:hidden text-pink-600">2026-27</span>
                   </h2>
 
                   <h1 className="hidden sm:inline-block text-3xl font-extrabold leading-tight text-pink-600 sm:text-4xl">

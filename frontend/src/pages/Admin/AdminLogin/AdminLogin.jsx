@@ -97,7 +97,6 @@ function AdminLogin() {
 
       if (signInError) {
         setError(signInError.message || "Invalid email or password.");
-
         return;
       }
 
@@ -122,7 +121,7 @@ function AdminLogin() {
       }
 
       /* =====================================================
-         ADDITIONAL AUTHENTICATION REQUIREMENTS
+         MFA / SECOND FACTOR
       ====================================================== */
 
       if (signIn.status === "needs_second_factor") {
@@ -131,11 +130,18 @@ function AdminLogin() {
         return;
       }
 
-      if (signIn.status === "needs_client_trust") {
-        setError("This device needs additional verification before login.");
-
-        return;
-      }
+      /*
+       * Device Trust / needs_client_trust has been removed.
+       *
+       * Make sure Device Trust is disabled from:
+       *
+       * Clerk Dashboard
+       * → Protect
+       * → Rules
+       * → Device Trust
+       * → Manage
+       * → Disable
+       */
 
       setError("Login could not be completed. Please try again.");
     } catch (loginError) {
@@ -150,7 +156,7 @@ function AdminLogin() {
   const isEmailSubmitting = emailLoading || fetchStatus === "fetching";
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-sky-50 px-4 py-8 font-sans sm:px-6">
+    <main className="flex min-h-screen items-center justify-center bg-sky-50 px-4 py-8 font-body sm:px-6">
       <div className="w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-floating">
         <div className="p-6 sm:p-8 lg:p-10">
           {/* =================================================
@@ -172,15 +178,36 @@ function AdminLogin() {
           ================================================== */}
 
           <div className="text-center">
-            <p className="text-sm font-bold uppercase tracking-wide text-brand-blue">
+            <p className="text-xs font-body font-bold uppercase tracking-wide text-brand-blue md:text-[0.8125rem] lg:text-sm">
               Administration
             </p>
 
-            <h1 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl">
+            <h1
+              className="
+                mt-2
+                font-heading
+                text-2xl sm:text-3xl md:text-[1.875rem] lg:text-4xl xl:text-[2.5rem] 2xl:text-5xl
+                leading-tight
+                tracking-tight
+                font-extrabold
+                text-brand-navy
+              "
+            >
               Admin <span className="text-pink-600">Login</span>
             </h1>
 
-            <p className="mt-3 text-sm leading-6 text-text-secondary sm:text-base">
+            <p
+              className="
+                mt-3
+                max-w-xl
+                mx-auto
+                text-sm md:text-[0.9375rem] lg:text-base xl:text-[1.0625rem]
+                leading-7
+                tracking-normal
+                font-body
+                text-text-secondary
+              "
+            >
               Sign in using your authorized email and password or continue with
               Google.
             </p>
@@ -193,7 +220,19 @@ function AdminLogin() {
           {error && (
             <div
               role="alert"
-              className="mt-6 rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold leading-6 text-red-700"
+              className="
+                mt-6
+                rounded-xl
+                bg-red-50
+                px-4
+                py-3
+                text-sm md:text-[0.9375rem] lg:text-base
+                leading-6
+                tracking-normal
+                font-body
+                font-semibold
+                text-red-700
+              "
             >
               {error}
             </div>
@@ -209,7 +248,16 @@ function AdminLogin() {
             <div>
               <label
                 htmlFor="admin-email"
-                className="mb-1.5 block text-sm font-semibold leading-6 text-brand-navy"
+                className="
+                  mb-1.5
+                  block
+                  text-sm md:text-[0.9375rem] lg:text-base
+                  leading-6
+                  tracking-normal
+                  font-body
+                  font-semibold
+                  text-brand-navy
+                "
               >
                 Email Address
               </label>
@@ -226,7 +274,28 @@ function AdminLogin() {
                 }}
                 placeholder="Enter admin email"
                 disabled={isEmailSubmitting}
-                className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 text-sm leading-6 text-text-primary outline-none transition-colors placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 disabled:cursor-not-allowed disabled:bg-gray-50"
+                className="
+                  h-12
+                  w-full
+                  rounded-lg
+                  border
+                  border-gray-300
+                  bg-white
+                  px-4
+                  text-sm md:text-[0.9375rem] lg:text-base
+                  leading-6
+                  tracking-normal
+                  font-body
+                  text-text-primary
+                  outline-none
+                  transition-colors
+                  placeholder:text-gray-400
+                  focus:border-brand-blue
+                  focus:ring-2
+                  focus:ring-brand-blue/20
+                  disabled:cursor-not-allowed
+                  disabled:bg-gray-50
+                "
               />
             </div>
 
@@ -236,7 +305,15 @@ function AdminLogin() {
               <div className="mb-1.5 flex items-center justify-between gap-3">
                 <label
                   htmlFor="admin-password"
-                  className="block text-sm font-semibold leading-6 text-brand-navy"
+                  className="
+                    block
+                    text-sm md:text-[0.9375rem] lg:text-base
+                    leading-6
+                    tracking-normal
+                    font-body
+                    font-semibold
+                    text-brand-navy
+                  "
                 >
                   Password
                 </label>
@@ -255,14 +332,49 @@ function AdminLogin() {
                   }}
                   placeholder="Enter your password"
                   disabled={isEmailSubmitting}
-                  className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 pr-12 text-sm leading-6 text-text-primary outline-none transition-colors placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 disabled:cursor-not-allowed disabled:bg-gray-50"
+                  className="
+                    h-12
+                    w-full
+                    rounded-lg
+                    border
+                    border-gray-300
+                    bg-white
+                    px-4
+                    pr-12
+                    text-sm md:text-[0.9375rem] lg:text-base
+                    leading-6
+                    tracking-normal
+                    font-body
+                    text-text-primary
+                    outline-none
+                    transition-colors
+                    placeholder:text-gray-400
+                    focus:border-brand-blue
+                    focus:ring-2
+                    focus:ring-brand-blue/20
+                    disabled:cursor-not-allowed
+                    disabled:bg-gray-50
+                  "
                 />
 
                 <button
                   type="button"
                   onClick={() => setShowPassword((current) => !current)}
                   disabled={isEmailSubmitting}
-                  className="absolute right-0 top-0 flex h-12 w-12 items-center justify-center text-gray-500 transition-colors hover:text-brand-navy disabled:cursor-not-allowed"
+                  className="
+                    absolute
+                    right-0
+                    top-0
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    text-gray-500
+                    transition-colors
+                    hover:text-brand-navy
+                    disabled:cursor-not-allowed
+                  "
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? (
@@ -279,7 +391,30 @@ function AdminLogin() {
             <button
               type="submit"
               disabled={!isLoaded || !email || !password || isEmailSubmitting}
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-brand-navy px-6 text-sm font-bold text-white shadow-button transition-all duration-200 hover:bg-brand-blue hover:shadow-button-hover disabled:cursor-not-allowed disabled:opacity-60"
+              className="
+                inline-flex
+                min-h-12
+                w-full
+                items-center
+                justify-center
+                gap-2
+                rounded-lg
+                bg-brand-navy
+                px-6
+                text-sm md:text-[0.9375rem] lg:text-base
+                leading-5
+                tracking-normal
+                font-body
+                font-bold
+                text-white
+                shadow-button
+                transition-all
+                duration-200
+                hover:bg-brand-blue
+                hover:shadow-button-hover
+                disabled:cursor-not-allowed
+                disabled:opacity-60
+              "
             >
               {isEmailSubmitting ? (
                 <>
@@ -303,7 +438,20 @@ function AdminLogin() {
           <div className="my-6 flex items-center gap-3">
             <div className="h-px flex-1 bg-gray-200" />
 
-            <span className="shrink-0 text-xs font-bold uppercase tracking-wide text-gray-400">
+            <span
+              className="
+                shrink-0
+                text-xs
+                md:text-[0.8125rem]
+                lg:text-sm
+                leading-5
+                tracking-normal
+                font-body
+                font-bold
+                uppercase
+                text-gray-400
+              "
+            >
               Or
             </span>
 
@@ -318,7 +466,33 @@ function AdminLogin() {
             type="button"
             onClick={handleGoogleLogin}
             disabled={!isLoaded || googleLoading}
-            className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-6 text-sm font-bold text-text-primary shadow-button transition-all duration-200 hover:border-brand-blue hover:bg-gray-50 hover:shadow-button-hover disabled:cursor-not-allowed disabled:opacity-60"
+            className="
+              inline-flex
+              min-h-12
+              w-full
+              items-center
+              justify-center
+              gap-3
+              rounded-lg
+              border
+              border-gray-300
+              bg-white
+              px-6
+              text-sm md:text-[0.9375rem] lg:text-base
+              leading-5
+              tracking-normal
+              font-body
+              font-bold
+              text-text-primary
+              shadow-button
+              transition-all
+              duration-200
+              hover:border-brand-blue
+              hover:bg-gray-50
+              hover:shadow-button-hover
+              disabled:cursor-not-allowed
+              disabled:opacity-60
+            "
           >
             {googleLoading ? (
               <LoaderCircle
@@ -338,7 +512,17 @@ function AdminLogin() {
           ================================================== */}
 
           <div className="mt-5 text-center">
-            <p className="text-xs leading-5 text-text-secondary">
+            <p
+              className="
+                text-xs
+                md:text-[0.8125rem]
+                lg:text-sm
+                leading-5
+                tracking-normal
+                font-body
+                text-text-secondary
+              "
+            >
               Only authorized school administrators can access this portal.
             </p>
           </div>
@@ -355,7 +539,17 @@ function AdminLogin() {
                 aria-hidden="true"
               />
 
-              <p className="text-xs leading-5 text-text-secondary">
+              <p
+                className="
+                  text-xs
+                  md:text-[0.8125rem]
+                  lg:text-sm
+                  leading-5
+                  tracking-normal
+                  font-body
+                  text-text-secondary
+                "
+              >
                 Admin access is restricted to authorized school administrators.
               </p>
             </div>
@@ -368,7 +562,19 @@ function AdminLogin() {
           <div className="mt-6 text-center">
             <Link
               to="/"
-              className="text-sm font-semibold text-brand-blue transition-colors duration-200 hover:text-brand-navy"
+              className="
+                text-sm
+                md:text-[0.9375rem]
+                lg:text-base
+                leading-5
+                tracking-normal
+                font-body
+                font-semibold
+                text-brand-blue
+                transition-colors
+                duration-200
+                hover:text-brand-navy
+              "
             >
               ← Back to Website
             </Link>

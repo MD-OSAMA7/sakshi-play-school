@@ -325,70 +325,61 @@ function Gallery() {
           GALLERY HERO
       ====================================================== */}
       <section className="relative overflow-hidden bg-sky-50">
+        <img
+          src="/images/gallery/gallery-hero.webp"
+          alt="Happy children learning at Sakshi Play School"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+
+        {/* Left White Overlay */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none max-w-260 absolute inset-0 bg-linear-to-r from-white via-white/99 to-transparent"
+        />
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white via-white/10 to-transparent md:h-20"
+        />
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-3 bg-linear-to-b from-white/70 to-transparent"
+        />
+
         <div className="container">
-          <div className="grid items-center gap-6 lg:min-h-96 lg:grid-cols-12">
+          <div className="grid min-h-72 items-center sm:min-h-80 lg:min-h-120 lg:grid-cols-2">
             {/* Hero Content */}
-            <div className="relative z-10 py-10 sm:py-14 lg:col-span-6 lg:py-16">
+            <div className="relative z-10 max-w-xl py-12 text-start md:py-16 lg:py-20">
               {/* Heading */}
-              <div className="relative mt-2 w-fit">
-                <h1 className="text-5xl font-extrabold leading-none tracking-tight sm:text-6xl lg:text-7xl">
-                  <span className="text-brand-navy">G</span>
-                  <span className="text-pink-600">a</span>
-                  <span className="text-brand-navy">l</span>
-                  <span className="text-pink-600">l</span>
-                  <span className="text-brand-navy">e</span>
-                  <span className="text-pink-600">r</span>
-                  <span className="text-brand-navy">y</span>
-                </h1>
-              </div>
+
+              <h1 className="font-serif font-black uppercase leading-tight tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+                <span className="text-brand-navy">G</span>
+                <span className="text-pink-600">a</span>
+                <span className="text-brand-navy">l</span>
+                <span className="text-pink-600">l</span>
+                <span className="text-brand-navy">e</span>
+                <span className="text-pink-600">r</span>
+                <span className="text-brand-navy">y</span>
+              </h1>
 
               {/* Subtitle */}
-              <p className="mt-5 max-w-xl text-base font-medium leading-7 text-text-secondary sm:text-lg">
-                A glimpse of our little learners, big moments and happy memories
+              <p className="mt-5 max-w-70 sm:max-w-90 font-sans leading-7 tracking-normal text-sm text-text-secondary md:text-[0.9375rem] lg:text-base">
+                A glimpse of our little learners, big moments
                 at Sakshi Play School.
               </p>
-
-              {/* Breadcrumb */}
-              <div className="mt-5 flex items-center gap-2 text-sm font-medium">
-                <Link
-                  to="/"
-                  className="text-brand-blue transition-colors duration-200 hover:text-brand-navy"
-                >
-                  Home
-                </Link>
-
-                <span className="text-text-secondary">/</span>
-
-                <span className="text-brand-navy">Gallery</span>
-              </div>
-            </div>
-
-            {/* Hero Image */}
-            <div className="relative min-h-72 sm:min-h-80 lg:col-span-6 lg:min-h-96">
-              <div className="absolute inset-0 overflow-hidden rounded-xl">
-                <img
-                  src="/images/gallery/gallery-hero.webp"
-                  alt="Happy child at Sakshi Play School"
-                  className="h-full w-full border-0 object-cover"
-                  loading="eager"
-                />
-
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-linear-to-r from-sky-50 via-sky-30 to-transparent"
-                />
-              </div>
             </div>
           </div>
         </div>
-
-        {/* Bottom Accent */}
-        <div
-          aria-hidden="true"
-          className="h-1 w-full rounded-b-full bg-linear-to-r from-pink-500 via-brand-gold to-brand-blue"
-        />
       </section>
-
+      {/* Bottom Accent */}
+      <div
+        aria-hidden="true"
+        className="h-1 w-full rounded-b-full bg-linear-to-r from-pink-500 via-brand-gold to-brand-blue"
+      />
       {/* =====================================================
           GALLERY GRID
       ====================================================== */}
@@ -510,7 +501,7 @@ function Gallery() {
               <span className="text-pink-600">Brighter Future</span>
             </h2>
 
-            <p className="mx-auto mt-4 max-w-3xl text-center text-sm leading-6 text-text-secondary sm:text-base">
+            <p className="mx-auto px-1 mt-4 max-w-3xl text-center text-sm leading-6 text-text-secondary sm:text-base">
               At Sakshi Play School, we believe every child deserves the right
               environment to learn, grow and shine. Join us in this beautiful
               journey of early learning.
